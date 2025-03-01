@@ -1,0 +1,34 @@
+@startuml
+abstract class Fahrzeug // Position: (549, 114) {
+≤attributes≥
++ Räder: GZ
++ LECK: TEXT
+≤methods≥
+}
+class Auto // Position: (502, 439) {
+≤attributes≥
+≤methods≥
+}
+class Motorrad // Position: (314, 429) {
+≤attributes≥
+≤methods≥
++ test()
+}
+abstract class Person // Position: (84, 144) {
+≤attributes≥
+≤methods≥
+}
+class Fahrer // Position: (713, 426) {
+≤attributes≥
+≤methods≥
+}
+class Werkstatt // Position: (897, 327) {
+≤attributes≥
+≤methods≥
+}
+Werkstatt "dieWerkstatt¿3" <--> "das Fahrzeug¿1" Fahrzeug
+Person "diePerson¿1" <--> "dasFahrzeug¿123" Fahrzeug
+Motorrad --|> Fahrzeug
+Auto --|> Fahrzeug
+Fahrer --|> Fahrzeug
+@enduml

@@ -1,0 +1,106 @@
+@startuml
+class GUI // Position: (36, 55) {
+≤attributes≥
+≤methods≥
++ GUI(pSteuerung: Steuerung) <<constructor>>
++ clickInit()
++ clickSpeichernEinstellungen()
++ clickSpeichernMannschaften()
++ clickErmittelnPaarungen()
++ clickZusammenfassenErgebnis()
++ clickBestimmeRangfolge()
++ clickBeenden()
++ gibNameMannschaft(pZeile: GZ): Text
++ gibErgebnisPaarung(pZeile: GZ, pMannschaft: GZ): GZ
++ anzeigenPaarung(pZeile: GZ, pM1: Text, pM2: Text)
++ anzeigeninTab(pZeile: GZ, pRang: GZ, pMannschaft: Text, pSpiele: GZ, pPunkte: GZ, pTorePlus: GZ, pToreMinus: GZ)
++ sichtbarEinstellungen()
++ sichtbarReg1_Mannschaften()
++ sichtbarReg2_Ergebnisse()
++ sichtbarReg3_Tabelle()
+}
+class Paarung // Position: (1052, 20) {
+≤attributes≥
+- index_M1: GZ
+- index_M2: GZ
+- tore_M1: GZ
+- tore_M2: GZ
+≤methods≥
++ Paarung(pIndex_M1: GZ, pIndex_M2: GZ) <<constructor>>
++ eintragenErgebnis(pTore_M1: GZ, pTore_M2: GZ)
++ gibIndex_Mx(x: GZ): GZ
++ gibTore_Mx(x: GZ): GZ
+}
+class Steuerung // Position: (1094, 342) {
+≤attributes≥
+- anzahlMannschaften: GZ
+- anzahlPaarungen: GZ
+- zustand: GZ
+≤methods≥
++ Steuerung() <<constructor>>
++ speichereEinstellungen()
++ speichereMannschaften()
++ zusammenfassenErgebnisse()
++ bestimmeRangfolge()
+- erstellePaarungObjekte()
+- ausgebenPaarungen()
+- einlesenSpielErgebnisse()
+- berechneStatusMannschaften()
+- eintragenMannschaftenInTabelle()
+- ausgebenTabelle(pMitRang: Boolean)
+}
+class Mannschaft // Position: (167, 626) {
+≤attributes≥
+- name: Text
+- anzahlToreErzielt: GZ
+- anzahlToreBekommen: GZ
+- anzahlSiege: GZ
+- anzahlUnentschieden: GZ
+- anzahlNiederlagen: GZ
+- punkte: GZ
+≤methods≥
++ Mannschaft() <<constructor>>
++ eintragenName(pName: Text)
++ addiereToreErzielt(pAnzahl: GZ)
++ addiereToreBekommen(pAnzahl: GZ)
++ erhoeheAnzahlSiege()
++ erhoeheAnzahlUnentschieden()
++ erhoeheAnzahlNiederlagen()
++ addierePunkte(pPunkte: GZ)
++ gibName(): Text
++ gibAnzahlToreErzielt(): GZ
++ gibAnzahlToreBekommen(): GZ
++ gibAnzahlSiege(): GZ
++ gibAnzahlUnentschieden(): GZ
++ gibAnzahlNiederlagen(): GZ
++ gibPunkte(): GZ
++ berechneAnzahlSpiele()
+}
+abstract class Tabelle // Position: (991, 785) {
+≤attributes≥
+# anzahlZeilen: GZ
+≤methods≥
++ Tabelle() <<constructor>>
++ berechnePunkte(pAnzMannschaften: GZ) {abstract}
++ hinzufuegenMannschaft(pMannschaft: Mannschaft)
++ sortierenTabelle()
++ gibMannschaftInZeile(pZeile: GZ): Mannschaft
+}
+class Tab_2PktRegel // Position: (1537, 806) {
+≤attributes≥
+≤methods≥
++ Tab_2PktRegel() <<constructor>>
++ berechnePunkte(pAnzMannschaften: GZ)
+}
+class Tab_3PktRegel // Position: (1533, 629) {
+≤attributes≥
+≤methods≥
++ Tab_3PktRegel() <<constructor>>
++ berechnePunkte(pAnzMannschaften: GZ)
+}
+Paarung "diePaarung[]¿3..15" <-- "¿" Steuerung
+Tabelle "dieTabelle¿1" <-- "¿" Steuerung
+Tab_2PktRegel --|> Tabelle
+Tab_3PktRegel --|> Tabelle
+Mannschaft "inTabZeile[]¿3..6" <-- "¿" Tabelle
+@enduml

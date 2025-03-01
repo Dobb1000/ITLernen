@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Renderer im GitHub-Stil mit Formeln</title>
+    <!-- Einbindung des GitHub Markdown CSS über jsDelivr CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+    <!-- Einbindung von KaTeX CSS über jsDelivr CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+    <!-- Inline-Styling für die Markdown-Body -->
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+        pre code {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 10px;
+            border-radius: 5px;
+            display: block;
+            overflow-x: auto;
+        }
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Container für den gerenderten Markdown-Inhalt -->
+<article id="content" class="markdown-body"></article>
+
+<!-- Einbindung von markdown-it, highlight.js und KaTeX über jsDelivr CDN -->
+<script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Initialisierung von markdown-it mit aktiviertem HTML-Support und Syntax-Highlighting
+        const md = window.markdownit({
+            html: true,
+            highlight: function (str, lang) {
+                if (lang && hljs.getLanguage(lang)) {
+                    try {
+                        return '<pre class="hljs"><code>' + hljs.highlight(str, { language: lang }).value + '</code></pre>';
+                    } catch (__) {}
+                }
+                return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+            }
+        });
+
+        // Langer Markdown-Text mit verschiedenen Formatierungen, einem iFrame und Formeln
+        let markdownContent = `
+# Überschriften
+
+## h1 Überschrift 8-)
+### h2 Überschrift
+#### h3 Überschrift
+##### h4 Überschrift
+###### h5 Überschrift
+
+Alternativ für H1 und H2, ein unterstrichener Stil:
+
+Alt-H1
+======
+
+Alt-H2
+------
+
+------
+
+# Hervorhebungen
+
+Hervorhebungen mit *Sternchen* oder _Unterstrichen_.
+
+**Fetter Text** und __fetter Text__.
+
+~~Durchgestrichen~~
+
+------
+
+# Listen
+
+1. Erstes Listenelement
+2. Ein weiteres Element
+   * Ungeordnete Unterliste.
+3. Die tatsächlichen Zahlen spielen keine Rolle, nur dass es eine Zahl ist
+   1. Geordnete Unterliste
+4. Und ein weiteres Element.
+
+* Aufzählungspunkt
+- Ein weiterer Punkt
++ Plus Punkt
+
+------
+
+# Aufgabenlisten
+
+- [x] Meine Änderungen abschließen
+- [ ] Meine Commits zu GitHub pushen
+- [ ] Einen Pull-Request öffnen
+
+------
+
+# Links
+
+[GitHub](https://github.com/)
+
+------
+
+# Bilder
+
+![Minion](https://octodex.github.com/images/minion.png)
+
+------
+
+# Code-Highlighting
+
+\`\`\`js
+function hello() {
+    console.log("Hallo, Markdown!");
+}
+\`\`\`
+
+\`\`\`python
+def hello():
+    print("Hallo, Markdown!")
+\`\`\`
+
+------
+
+# Tabellen
+
+| Spalte 1 | Spalte 2 |
+|----------|----------|
+| Daten 1  | Daten 2  |
+| Daten 3  | Daten 4  |
+
+------
+
+# Zitate
+
+> Dies ist ein Zitat.
+
+------
+
+# YouTube-Video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ciawICBvQoE" frameborder="0" allowfullscreen></iframe>
+
+------
+
+# Eingebettete Google Map
+
+<iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen
+src="https://www.google.com/maps/embed/v1/place?q=Eiffel+Tower,Paris+France&key=YOUR_API_KEY"></iframe>
+
+------
+
+# Eingebettete Website
+
+<iframe src="https://www.wikipedia.org/" width="600" height="400"></iframe>
+
+------
+
+# Mathematische Formeln
+
+Inline-Formel: $E = mc^2$
+
+Block-Formel:
+
+$$
+\\frac{a}{b} = c
+$$
+`;
+
+        // Konvertierung von Markdown zu HTML
+        const result = md.render(markdownContent);
+
+        // Einfügen des gerenderten HTML in den Container
+        document.getElementById('content').innerHTML = result;
+
+        // Rendern der mathematischen Formeln mit KaTeX
+        renderMathInElement(document.getElementById('content'), {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "$", right: "$", display: false}
+            ]
+        });
+    });
+</script>
+</body>
+</html>
