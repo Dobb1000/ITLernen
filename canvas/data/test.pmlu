@@ -1,0 +1,18 @@
+@startuml
+
+// Position: (50, 50)
+entity Class1 {
+}
+
+// Position: (528, 190)
+entity Class2 {
+}
+
+// Position: (838, 514)
+relationship Beziehung3 {
+}
+
+Class2 "11" -- "2" Class1
+Beziehung3 "2" -- "1" Class2
+
+@enduml

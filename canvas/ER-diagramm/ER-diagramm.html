@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas UML Editor mit PlantUML Export</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #umlCanvas { background-color: #f9f9f9; cursor: crosshair;   display: block;margin: auto;
+        }
+
+        html, body {
+            overscroll-behavior: contain;
+            touch-action: manipulation;
+        }
+        #plantumlCode { width: 100%; height: 120px; font-family: monospace; }
+        #plantUMLInput { width: 100%; height: 120px; font-family: monospace; }
+        #plantUMLLoesung { width: 100%; height: 120px; font-family: monospace; }
+
+        .controls { margin: 10px;}
+        #classEditor, #contextMenu { display: none; position: absolute; background: white; border: 1px solid black; padding: 10px; }
+        #contextMenu ul { list-style: none; padding: 0; margin: 0; }
+        #contextMenu ul li { padding: 5px 10px; cursor: pointer; }
+        #contextMenu ul li:hover { background: #ddd; }
+
+        #attributeContextMenu { display: none; position: absolute; background: white; border: 1px solid black; padding: 10px; }
+        #attributeContextMenu ul { list-style: none; padding: 0; margin: 0; }
+        #attributeContextMenu ul li { padding: 5px 10px; cursor: pointer; }
+        #attributeContextMenu ul li:hover { background: #ddd; }
+
+
+        #inheritanceContextMenu, #contextMenu {
+            display: none;
+            position: absolute;
+            background: #ffffff;
+            border: 1px solid #333;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 5px;
+            z-index: 1000;
+            min-width: 150px;
+        }
+
+        #inheritanceContextMenu ul, #contextMenu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #inheritanceContextMenu ul li, #contextMenu ul li {
+            padding: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+            transition: background 0.2s ease-in-out;
+        }
+
+        #inheritanceContextMenu ul li:hover, #contextMenu ul li:hover {
+            background: #f0f0f0;
+        }
+
+
+        *:not(#special-id) {
+            /* Your styles here */
+        }
+
+
+
+
+        #associationContextMenu, #contextMenu {
+            display: none;
+            position: absolute;
+            background: #ffffff;
+            border: 1px solid #333;
+            border-radius: 5px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 5px;
+            z-index: 1000;
+            min-width: 150px;
+        }
+
+        #associationContextMenu ul, #contextMenu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #associationContextMenu ul li, #contextMenu ul li {
+            padding: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            color: #333;
+            transition: background 0.2s ease-in-out;
+        }
+
+        #associationContextMenu ul li:hover, #contextMenu ul li:hover {
+            background: #f0f0f0;
+        }
+
+
+        #canvasContainer {
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            touch-action: auto; /* Verhindert Scroll-Blockaden auf Touch-Geräten */
+
+            border: none;
+            background: #fff;
+        }
+
+        #umlCanvas {
+
+            position: absolute;
+            background: #fff;
+        }
+
+
+
+
+        #toolWindow {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 250px;
+            background: white;
+            border: 1px solid black;
+            padding: 10px;
+            z-index: 1000;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            cursor: grab;
+        }
+
+        #toolWindowHeader {
+            background: #ddd;
+            padding: 5px;
+            cursor: grab;
+            text-align: center;
+            font-weight: bold;
+        }
+        .achievement-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .achievement {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            animation: fadeOut 5s ease-in-out forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="achievement-container" id="achievementContainer"></div>
+
+<div id="toolWindow">
+    <div id="toolWindowHeader">Werkzeuge</div>
+    <div id="controls" class="controls" style="display: flex; flex-direction: column; gap: 5px;">
+        <button onclick="addClass()">➕ Klasse hinzufügen</button>
+        <button onclick="addRelationship()">🔷 Beziehung hinzufügen</button>
+
+        <div style="display: flex; gap: 5px;">
+        <button onclick="clearCanvas()">🗑️ Alles Löschen</button>
+        <button onclick="window.location.reload()">🔄 Zurücksetzen</button></button>
+
+        </div>
+
+        <input type="file" id="associationFile" accept=".pmlu" style="display: none;">
+        <div style="display: flex; gap: 5px;">
+            <button onclick="fileInput.click()">📂 Datei laden</button>
+            <button onclick="saveToFile()">💾 Datei speichern</button>
+        </div>
+        <button onclick="downloadCanvasAsPNG()">📷 PNG Export</button>
+        <button onclick="downloadCanvasAsSVG()">🖼️ SVG Export</button>
+
+    </div>
+</div>
+
+<div id="canvasContainer">
+    <canvas id="umlCanvas"></canvas>
+</div>
+
+<div id="classEditor">
+    <label>Name: <input type="text" id="className"></label><br>
+    <label>Attribute: <textarea id="classAttributes"></textarea></label><br>
+    <label>Methoden: <textarea id="classMethods"></textarea></label><br>
+    <label><input type="checkbox" id="classAbstract"> Abstrakt</label><br>
+    <button onclick="saveClassDetails()">Speichern</button>
+    <button onclick="closeEditor()">Schließen</button>
+
+</div>
+
+<div id="contextMenu">
+    <ul>
+        <li onclick="startAssociation()">Assoziation hinzufügen</li>
+        <li onclick="startAddingAttribute()">Attribut</li> <!-- Neue Option -->
+        <li onclick="openEditorFromMenu()">Bearbeiten</li>
+        <li onclick="deleteClass()">Löschen</li>
+    </ul>
+</div>
+
+
+
+
+<div id="associationContextMenu">
+    <ul>
+        <li onclick="editAssociation(event)">Bearbeiten</li>
+        <li onclick="deleteAssociation()">Löschen</li>
+    </ul>
+</div>
+
+<div id="inheritanceContextMenu" style="display: none; position: absolute; background: white; border: 1px solid black; padding: 10px;">
+    <ul>
+        <li onclick="deleteInheritance()">Löschen</li>
+    </ul>
+</div>
+
+
+<div id="attributeContextMenu">
+    <ul>
+        <li onclick="editAttribute(event)">Bearbeiten</li>
+        <li onclick="deleteAttribute()">Löschen</li>
+    </ul>
+</div>
+
+<div id="associationEditor" style="display: none; position: absolute; background: white; border: 1px solid black; padding: 10px;">
+    <label>Multiplizität Start: <input  type="text" id="multiplicityStart"></label><br>
+    <label>Multiplizität Ende: <input type="text" id="multiplicityEnd"></label><br>
+    <button onclick="saveAssociationDetails()">Speichern</button>
+    <button onclick="closeAssociationEditor()">Schließen</button>
+
+</div>
+
+<div id="attributeEditor" style="display: none; position: absolute; background: white; border: 1px solid black; padding: 10px;">
+    <label>Attribut-Name: <input type="text" id="attributeName"></label><br>
+    <button onclick="saveAttributeDetails()">Speichern</button>
+    <button onclick="closeAttributeEditor()">Schließen</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+<script src="ER-diagramm.js"></script>
+</body>
+</html>

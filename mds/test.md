@@ -36,6 +36,7 @@ Alt-H2
 
 # Emphasis
 
+
 ```
 Emphasis, aka italics, with *asterisks* or _underscores_.
 
@@ -54,6 +55,7 @@ __This is bold text__
 _This is italic text_
 
 ~~Strikethrough~~
+
 ```
 
 Emphasis, aka italics, with *asterisks* or _underscores_.

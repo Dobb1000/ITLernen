@@ -23,66 +23,6 @@ const intervalId = setInterval(() => {
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-  function adjustSplineViewer() {
-      const splineViewers = document.querySelectorAll("spline-viewer");
-      if (!splineViewers.length) return;
-      
-      const splineViewer = splineViewers[0]; // Nur den ersten anpassen
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      const container = splineViewer.closest(".hero-img"); // Den Container identifizieren
-      const textContainer = document.querySelector(".hero .col-lg-6");
-      
-      if (vh * 1.2 > vw) { // Ändert sich früher, bevor der Text links daneben ist
-          // Hochkant-Modus: Quadratische Darstellung in der Mitte
-          splineViewer.style.width = "80vh";
-          splineViewer.style.height = "80vh";
-          splineViewer.style.position = "absolute";
-          splineViewer.style.top = "50%";
-          splineViewer.style.left = "50%";
-          splineViewer.style.transform = "translate(-50%, -50%)";
-          splineViewer.style.zIndex = "0"; // Stellt sicher, dass der Viewer hinter dem Text bleibt
-          
-          if (container) {
-              container.style.position = "relative";
-              container.style.minHeight = "50vh";
-              container.style.display = "flex";
-              container.style.justifyContent = "center";
-              container.style.alignItems = "center";
-          }
-          
-          if (textContainer) {
-              textContainer.style.position = "relative";
-              textContainer.style.zIndex = "1"; // Bringt den Text nach vorne
-          }
-      } else {
-          // Normale Darstellung
-          splineViewer.style.width = "50vw";
-          splineViewer.style.height = "80vh";
-          splineViewer.style.position = "static";
-          splineViewer.style.transform = "none";
-          
-          if (container) {
-              container.style.position = "static";
-              container.style.minHeight = "auto";
-              container.style.display = "block";
-          }
-          
-          if (textContainer) {
-              textContainer.style.position = "static";
-              textContainer.style.zIndex = "auto";
-          }
-      }
-  }
-  
-  // Initiale Anpassung
-  adjustSplineViewer();
-  
-  // Anpassung bei Fenstergrößenänderung
-  window.addEventListener("resize", adjustSplineViewer);
-});
-
 
 (function() {
   "use strict";
