@@ -133,7 +133,7 @@ Eine abstrakte Methode hat nur eine Definition, aber keine Umsetzung. Unterklass
 
 ## **Methodenüberladung (Method Overloading)**
 
-### **Definition:**
+### **Definition**
 
 <img style="width: 30%;float: right;" src="./imgs/ueberladen.png">
 
@@ -147,7 +147,7 @@ Eine abstrakte Methode hat nur eine Definition, aber keine Umsetzung. Unterklass
 
 ## **Dynamische Polymorphie (Method Overriding)**
 
-### **Definition:**
+### **Definition**
 
 <img style="width: 30%;float: right;" src="./imgs/dyn_pol.png">
 

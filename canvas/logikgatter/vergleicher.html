@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vergleicher Simulation</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+            background-color: #f8f8f8;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            align-items: flex-start;
+        }
+        canvas {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 300px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+            font-size: 14px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+
+            }
+            table {
+                max-width: 100%;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="400" height="300"></canvas>
+    <table id="truthTable">
+        <thead>
+        <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>A &lt; B</th>
+            <th>A = B</th>
+            <th>A &gt; B</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let A = 0;
+    let B = 0;
+
+    function computeComparison(a, b) {
+        return {
+            lessThan: a < b ? 1 : 0,
+            equal: a === b ? 1 : 0,
+            greaterThan: a > b ? 1 : 0
+        };
+    }
+
+    function updateTruthTable() {
+        const tbody = document.querySelector("#truthTable tbody");
+        tbody.innerHTML = "";
+
+        const cases = [[0,0], [0,1], [1,0], [1,1]];
+
+        cases.forEach(([a, b]) => {
+            const result = computeComparison(a, b);
+            const row = `<tr><td>${a}</td><td>${b}</td><td>${result.lessThan}</td><td>${result.equal}</td><td>${result.greaterThan}</td></tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    function drawComparator() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = A ? "green" : "red";
+        ctx.fillRect(50, 50, 40, 40);
+        ctx.fillStyle = "black";
+        ctx.font = "16px Arial";
+        ctx.fillText("A", 60, 45);
+
+        ctx.fillStyle = B ? "green" : "red";
+        ctx.fillRect(50, 150, 40, 40);
+        ctx.fillStyle = "black";
+        ctx.fillText("B", 60, 145);
+
+        ctx.strokeRect(150, 75, 100, 100);
+        ctx.fillText("COMP", 175, 100);
+
+        ctx.beginPath();
+        ctx.moveTo(90, 70);
+        ctx.lineTo(150, 95);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(90, 170);
+        ctx.lineTo(150, 135);
+        ctx.stroke();
+
+        let result = computeComparison(A, B);
+        ctx.fillText("A<B", 270, 90);
+        ctx.fillText("A=B", 270, 120);
+        ctx.fillText("A>B", 270, 150);
+
+        ctx.fillStyle = result.lessThan ? "yellow" : "gray";
+        ctx.beginPath();
+        ctx.arc(320, 85, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = result.equal ? "yellow" : "gray";
+        ctx.beginPath();
+        ctx.arc(320, 115, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = result.greaterThan ? "yellow" : "gray";
+        ctx.beginPath();
+        ctx.arc(320, 145, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    canvas.addEventListener("click", function(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        if (x >= 50 && x <= 90 && y >= 50 && y <= 90) {
+            A = A ? 0 : 1;
+        }
+        if (x >= 50 && x <= 90 && y >= 150 && y <= 190) {
+            B = B ? 0 : 1;
+        }
+        drawComparator();
+    });
+
+    drawComparator();
+    updateTruthTable();
+</script>
+</body>
+</html>

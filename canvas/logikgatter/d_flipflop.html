@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D-Flip-Flop mit Takt</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+            background-color: #f8f8f8;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            align-items: flex-start;
+        }
+        canvas {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+        .table-container {
+            margin-left: 20px;
+            border-collapse: collapse;
+        }
+        .table-container th, .table-container td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            table {
+                max-width: 100%;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <table class="table-container" id="truthTable">
+        <tr>
+            <th>Takt</th>
+            <th>D</th>
+            <th>Qⁿ⁺¹</th>
+        </tr>
+    </table>
+</div>
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let D = 0;
+    let Clock = 0;
+    let Q = 0;
+
+    function updateFlipFlop() {
+        if (Clock === 1) {
+            Q = D;
+        }
+    }
+
+    function drawFlipFlop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.strokeRect(180, 150, 150, 150);
+        ctx.font = "18px Arial";
+
+
+
+
+
+        ctx.beginPath();
+        ctx.moveTo(180, 220);
+        ctx.lineTo(180 + 15, 220+15);
+        ctx.stroke();
+
+
+        ctx.beginPath();
+        ctx.moveTo(180, 220 + 30);
+        ctx.lineTo(180 + 15, 220+15);
+        ctx.stroke();
+
+        [["D", 180, D], ["CLK", 220, Clock]].forEach(([label, y, state]) => {
+            ctx.fillStyle = state ? "green" : "red";
+            ctx.fillRect(120, y, 30, 30);
+            ctx.beginPath();
+            ctx.moveTo(150, y + 15);
+            ctx.lineTo(180, y + 15);
+            ctx.stroke();
+            ctx.fillStyle = "black";
+            if (label === "CLK") {
+                ctx.fillText(label, 80, y + 20);
+                return;
+            }
+            ctx.fillText(label, 100, y + 20);
+        });
+
+        ctx.fillStyle = Q ? "green" : "red";
+        ctx.fillRect(340, 200, 30, 30);
+        ctx.fillStyle = "black";
+        ctx.fillText("Q", 380, 220);
+        ctx.beginPath();
+        ctx.moveTo(330, 215);
+        ctx.lineTo(340, 215);
+        ctx.stroke();
+    }
+
+    function updateTruthTable() {
+        const table = document.getElementById("truthTable");
+        table.innerHTML = `<tr><th>Takt</th><th>D</th><th>Qⁿ⁺¹</th></tr>`;
+        const states = [
+            { Clock: "↑", D: 0, Qn1: 0 },
+            { Clock: "↑", D: 1, Qn1: 1 },
+            { Clock: "sonst", D: "X", Qn1: Q }
+        ];
+        states.forEach(state => {
+            let row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${state.Clock}</td>
+                <td>${state.D}</td>
+                <td style="background-color: ${state.Qn1 ? 'green' : 'red'}; color: white;">${state.Qn1}</td>
+            `;
+            table.appendChild(row);
+        });
+    }
+
+    canvas.addEventListener("click", function(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        [[180, "D"], [220, "CLK"]].forEach(([yPos, name]) => {
+            if (x >= 120 && x <= 150 && y >= yPos && y <= yPos + 30) {
+                if (name === "D") D = D ? 0 : 1;
+                if (name === "CLK") Clock = Clock ? 0 : 1;
+            }
+        });
+
+        updateFlipFlop();
+        drawFlipFlop();
+        updateTruthTable();
+    });
+
+    updateFlipFlop();
+    drawFlipFlop();
+    updateTruthTable();
+</script>
+</body>
+</html>

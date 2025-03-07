@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demultiplexer Simulation</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+            background-color: #f8f8f8;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            align-items: flex-start;
+        }
+        canvas {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+        .table-container {
+            margin-left: 20px;
+            border-collapse: collapse;
+        }
+        .table-container th, .table-container td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+
+            }
+            table {
+                max-width: 100%;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <table class="table-container" id="truthTable">
+        <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>CS</th>
+            <th>Y0</th>
+            <th>Y1</th>
+            <th>Y2</th>
+            <th>Y3</th>
+        </tr>
+    </table>
+</div>
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let CS = 1;
+    let A = 0;
+    let B = 0;
+    let outputs = ["gray", "gray", "gray", "gray"];
+
+    function getDemuxOutput() {
+        if (CS === 0) return ["gray", "gray", "gray", "gray"];
+        let sel = (B << 1) | A;
+        return outputs.map((_, index) => index === sel ? "green" : "gray");
+    }
+
+    function drawDemultiplexer() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "black";
+        ctx.strokeRect(180, 80, 180, 250);
+        ctx.font = "18px Arial";
+        ctx.fillText("DEMUX", 240, 100);
+
+        let shift = -100;
+        ctx.fillText("CS", 120 + shift + 30, 110);
+        ctx.fillStyle = CS ? "green" : "red";
+        ctx.fillRect(150 + shift + 31, 90, 30, 30);
+        ctx.beginPath();
+        ctx.moveTo(150 + shift + 61, 105);
+        ctx.lineTo(180, 105);
+        ctx.stroke();
+
+        [["A", 140, A], ["B", 175, B]].forEach(([label, y, state], index) => {
+            ctx.fillStyle = state ? "green" : "red";
+            ctx.fillRect(120, y, 30, 30);
+            ctx.beginPath();
+            ctx.moveTo(150, y + 15);
+            ctx.lineTo(180, y + 15);
+            ctx.stroke();
+            ctx.fillStyle = "black";
+            ctx.fillText(label, 100, y + 20);
+        });
+
+        ctx.fillStyle = "green";
+        ctx.fillRect(120, 175 + 100, 30, 30);
+        ctx.beginPath();
+        ctx.moveTo(150, 175 + 15 + 100);
+        ctx.lineTo(180, 175 + 15 + 100);
+        ctx.stroke();
+        ctx.fillStyle = "black";
+        ctx.fillText("S", 100, 175 + 20 + 100);
+
+
+
+        let shift2 = 40;
+        getDemuxOutput().forEach((color, index) => {
+            ctx.fillStyle = color;
+            ctx.fillRect(360+ shift2, 120 + index * 40, 30, 30);
+            ctx.fillStyle = "black";
+            ctx.fillText(`Y${index}`, 400+ shift2, 140 + index * 40);
+            ctx.beginPath();
+            ctx.moveTo(320 + shift2, 135 + index * 40);
+            ctx.lineTo(360 + shift2, 135 + index * 40);
+            ctx.stroke();
+        });
+
+
+    }
+
+    function updateTruthTable() {
+        const table = document.getElementById("truthTable");
+        table.innerHTML = `<tr><th>A</th><th>B</th><th>CS</th><th>Y0</th><th>Y1</th><th>Y2</th><th>Y3</th></tr>`;
+        for (let i = 0; i < 4; i++) {
+            let row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${(i & 1) ? 1 : 0}</td>
+                <td>${(i & 2) ? 1 : 0}</td>
+                <td>${CS}</td>
+                <td style="background-color: ${i === 0 ? "green" : "gray"};">${i === 0 ? "S" : "0"}</td>
+                <td style="background-color: ${i === 1 ? "green" : "gray"};">${i === 1 ? "S" : "0"}</td>
+                <td style="background-color: ${i === 2 ? "green" : "gray"};">${i === 2 ? "S" : "0"}</td>
+                <td style="background-color: ${i === 3 ? "green" : "gray"};">${i === 3 ? "S" : "0"}</td>
+            `;
+            table.appendChild(row);
+        }
+    }
+
+    canvas.addEventListener("click", function(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        if (x >= 150 - 69 && x <= 180 - 69 && y >= 90 && y <= 120) {
+            CS = CS ? 0 : 1;
+        }
+
+        [[140, "A"], [175, "B"]].forEach(([yPos, name], index) => {
+            if (x >= 120 && x <= 150 && y >= yPos && y <= yPos + 30) {
+                if (name === "A") A = A ? 0 : 1;
+                if (name === "B") B = B ? 0 : 1;
+            }
+        });
+
+        outputs = getDemuxOutput();
+        drawDemultiplexer();
+        updateTruthTable();
+    });
+
+    drawDemultiplexer();
+    updateTruthTable();
+</script>
+</body>
+</html>

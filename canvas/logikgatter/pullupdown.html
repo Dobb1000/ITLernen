@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pull-Up und Pull-Down Schaltkreis</title>
+
+    <style>
+        #circuitCanvas {
+            overflow: hidden;
+        }
+        body {
+            overflow: hidden;
+        }
+
+    </style>
+
+</head>
+<body>
+<canvas id="circuitCanvas" width="800" height="400"></canvas>
+<script>
+    const canvas = document.getElementById("circuitCanvas");
+    const ctx = canvas.getContext("2d");
+
+    let pullDownActive = false;
+    let pullUpActive = false;
+
+    function drawCircuit() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        function drawLine(x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+        function drawResistor(x, y, horizontal, label) {
+            ctx.strokeRect(x - 5, y, 10, 50);
+            ctx.fillText(label, x + 10, y + 25);
+        }
+
+        function drawButton(x, y, active) {
+            ctx.fillStyle = active ? "green" : "red";
+            ctx.fillRect(x - 10, y, 20, 20);
+            ctx.fillStyle = "black";
+            ctx.fillText("Button", x - 15, y + 35);
+        }
+
+        function drawPowerSymbol(x, y, label) {
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.stroke();
+            ctx.fillText(label, x - 10, y - 15);
+        }
+
+        // Pull-Down Circuit
+        ctx.fillText("Pull-Down circuit", 100 - 50, 30);
+        drawPowerSymbol(150, 40, "5V");
+        drawLine(150, 50, 150, 100);
+        drawButton(150, 100, pullDownActive);
+        drawLine(150, 120, 150, 180);
+        drawResistor(150, 180, false, "10k");
+        drawLine(150, 230, 150, 270);
+        drawLine(150, 270, 120, 270);
+        drawPowerSymbol(120, 270, "GND");
+        ctx.fillText("D-IN2", 50, 148);
+        drawLine(45, 150, 150, 150);
+
+        ctx.strokeRect(25, 140, 20, 20);
+        ctx.fillText(pullDownActive ? "1" : "0", 32, 153);
+
+        // Pull-Up Circuit
+        ctx.fillText("Pull-Up circuit", 500 - 40, 30);
+        drawPowerSymbol(550, 40, "5V");
+        drawLine(550, 50, 550, 100);
+        drawResistor(550, 100, false, "10k");
+        drawLine(550, 150, 550, 200);
+        drawButton(550, 200, pullUpActive);
+        drawLine(550, 220, 550, 270);
+        drawLine(550, 270, 520, 270);
+        drawPowerSymbol(520, 270, "GND");
+        ctx.fillText("D-IN1", 450, 168);
+        drawLine(450, 170, 550, 170);
+
+        ctx.strokeRect(425, 160, 20, 20);
+        ctx.fillText(pullUpActive ? "0" : "1", 432, 173);
+    }
+
+    canvas.addEventListener("click", function(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        if (x >= 140 && x <= 160 && y >= 100 && y <= 120) {
+            pullDownActive = !pullDownActive;
+        } else if (x >= 540 && x <= 560 && y >= 200 && y <= 220) {
+            pullUpActive = !pullUpActive;
+        }
+        drawCircuit();
+    });
+
+    drawCircuit();
+</script>
+</body>
+</html>

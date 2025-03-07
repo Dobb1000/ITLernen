@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logikgatter Simulation (IEC Standard)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js"></script>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+
+            background-color: #f8f8f8;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+            align-items: flex-start;
+        }
+        canvas {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 300px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+            font-size: 14px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+
+            }
+            table {
+                max-width: 100%;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="400" height="300"></canvas>
+    <div >
+
+    <table id="truthTable">
+        <thead>
+        <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+
+            <th>S</th>
+            <th>C₀</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    </div>
+
+
+
+    <script>
+
+
+    </script>
+
+</div>
+<script>
+    const showComplexCheckbox = document.getElementById("showComplex");
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let switch1 = false;
+    let switch2 = false;
+    let switch3 = false;
+
+
+    function computeOutput(s1, s2) {
+        return s1 !== s2;
+    }
+
+    function computeOutput2(s1, s2) {
+        return s1 && s2;
+    }
+
+    function fullAdder(a, b, carryIn) {
+        // XOR-Operationen zur Berechnung der Summe
+        let sum = a ^ b ^ carryIn;
+
+        // Berechnung des Übertrags
+        let carryOut = (a & b) | (carryIn & (a ^ b));
+
+        return { sum, carryOut };
+    }
+
+
+    function updateTruthTable() {
+        const tbody = document.querySelector("#truthTable tbody");
+        tbody.innerHTML = "";
+
+        const cases = [
+            [0,0,0], [0,1,0], [1,0,0], [1,1,0], // HIER FEHLTE EIN KOMMA!
+            [0,0,1], [0,1,1], [1,0,1], [1,1,1]
+        ];
+
+
+
+        cases.forEach(([s1, s2, s3 = 0]) => {
+            const output = fullAdder(s1, s2, s3);
+
+            console.log(output.sum)
+            const row = `<tr><td>${s1}</td><td>${s2}</td><td>${s3}</td><td>${output.sum ? 1 : 0}</td><td>${output.carryOut ? 1 : 0}</td></tr>`;
+
+            tbody.innerHTML += row;
+        });
+    }
+
+    function drawCircuitSimple() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = switch1 ? "green" : "red";
+        ctx.fillRect(50, 95-65, 40, 40);
+        ctx.fillStyle = "black";
+        ctx.font = "16px Arial";
+        ctx.fillText("A", 60, 95-65-5);
+
+        ctx.fillStyle = switch2 ? "green" : "red";
+        ctx.fillRect(50, 95, 40, 40);
+        ctx.fillStyle = "black";
+        ctx.fillText("B", 60, 90);
+
+        ctx.fillStyle = switch3 ? "green" : "red";
+        ctx.fillRect(50, 95+65, 40, 40);
+        ctx.fillStyle = "black";
+        ctx.fillText("C", 60, 95+65-5);
+
+
+
+
+        ctx.strokeRect(150, 75, 80, 80);
+        ctx.font = "24px Arial";
+        let symbol = "Σ"
+
+        ctx.fillText(symbol, 180, 120);
+
+    ctx.beginPath();
+    ctx.moveTo(90, 70);
+    ctx.lineTo(120, 70);
+    ctx.lineTo(120, 95);
+    ctx.lineTo(150, 95);
+
+    ctx.moveTo(90, 170);
+    ctx.lineTo(120, 170);
+    ctx.lineTo(120, 135);
+    ctx.lineTo(150, 135);
+
+    ctx.font = "15px Arial";
+    ctx.fillText("A", 160, 95+6);
+
+    ctx.font = "15px Arial";
+    ctx.fillText("B", 160, 115+6);
+
+    ctx.font = "15px Arial";
+    ctx.fillText("C", 160, 135+6);
+
+
+    ctx.font = "15px Arial";
+    ctx.fillText("S", 150+80-20, 95+6);
+
+    ctx.font = "15px Arial";
+    ctx.fillText("C₀", 80+150-20, 135+6);
+
+
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(230, 135);
+    ctx.lineTo(270, 135);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(230, 95);
+    ctx.lineTo(270, 95);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(90, 115);
+    ctx.lineTo(150, 115);
+    ctx.stroke();
+
+    let output = fullAdder(switch1, switch2, switch3);
+        console.log(output)
+    ctx.fillStyle = output.sum ? "yellow" : "gray";
+    ctx.beginPath();
+    ctx.arc(280, 135, 15, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = output.carryOut ? "yellow" : "gray";
+    ctx.beginPath();
+    ctx.arc(280, 95, 15, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    }
+
+    canvas.addEventListener("click", function(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        if (x >= 50 && x <= 90 && y >= 30 && y <= 70) {
+            switch1 = !switch1;
+        }
+        if (x >= 50 && x <= 90 && y >= 95 && y <= 135) {
+            switch2 = !switch2;
+        }
+        if (x >= 50 && x <= 90 && y >= 160 && y <= 200) {
+            switch3 = !switch3;
+        }
+
+        drawCircuitSimple();
+    });
+
+    drawCircuitSimple();
+    updateTruthTable();
+
+
+
+    // Initial Draw
+     drawCircuitSimple();
+
+
+</script>
+
+
+</body>
+</html>

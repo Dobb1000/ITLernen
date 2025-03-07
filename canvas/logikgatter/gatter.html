@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logikgatter Simulation (IEC Standard)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.2/iframeResizer.contentWindow.min.js"></script>
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+
+            background-color: #f8f8f8;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            overflow: hidden;
+            align-items: flex-start;
+        }
+        canvas {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 300px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+            font-size: 14px;
+        }
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+
+            }
+            table {
+                max-width: 100%;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="400" height="300"></canvas>
+    <table id="truthTable">
+        <thead>
+        <tr>
+            <th>S1</th>
+            <th>S2</th>
+            <th>Output</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let switch1 = false;
+    let switch2 = false;
+
+    function getGateTypeFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("gate") || "AND";
+    }
+
+    function computeOutput(s1, s2, gateType) {
+        return gateType === "AND" ? (s1 && s2) :
+            gateType === "NAND" ? !(s1 && s2) :
+                gateType === "OR" ? (s1 || s2) :
+                    gateType === "NOR" ? !(s1 || s2) :
+                        gateType === "XOR" ? (s1 !== s2) :
+                            gateType === "XNOR" ? (s1 === s2) :
+                                gateType === "NOT" ? !s1 : false;
+    }
+
+    function updateTruthTable() {
+        let gateType = getGateTypeFromURL();
+        const tbody = document.querySelector("#truthTable tbody");
+        tbody.innerHTML = "";
+
+        const cases = gateType === "NOT" ? [[0], [1]] : [[0,0], [0,1], [1,0], [1,1]];
+
+        cases.forEach(([s1, s2 = 0]) => {
+            const output = computeOutput(s1, s2, gateType) ? 1 : 0;
+            const row = `<tr><td>${s1}</td><td>${s2}</td><td>${output}</td></tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    function drawCircuit() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let gateType = getGateTypeFromURL();
+
+        ctx.fillStyle = switch1 ? "green" : "red";
+        ctx.fillRect(50, 50, 40, 40);
+        ctx.fillStyle = "black";
+        ctx.font = "16px Arial";
+        ctx.fillText("S1", 60, 45);
+
+        if (gateType !== "NOT") {
+            ctx.fillStyle = switch2 ? "green" : "red";
+            ctx.fillRect(50, 150, 40, 40);
+            ctx.fillStyle = "black";
+            ctx.fillText("S2", 60, 145);
+        }
+
+        ctx.strokeRect(150, 75, 80, 80);
+        ctx.font = "24px Arial";
+        let symbol = gateType === "AND" ? "&" :
+            gateType === "NAND" ? "&" :
+                gateType === "OR" ? "≥1" :
+                    gateType === "NOR" ? "≥1" :
+                        gateType === "XOR" ? "=1" :
+                            gateType === "XNOR" ? "=1" :
+                                gateType === "NOT" ? "1" : "?";
+        ctx.fillText(symbol, 180, 120);
+
+        if (["NAND", "NOR", "XNOR", "NOT"].includes(gateType)) {
+            ctx.beginPath();
+            ctx.arc(235, 115, 5, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(90, 70);
+        ctx.lineTo(120, 70);
+        ctx.lineTo(120, 95);
+        ctx.lineTo(150, 95);
+
+        if (gateType !== "NOT") {
+            ctx.moveTo(90, 170);
+            ctx.lineTo(120, 170);
+            ctx.lineTo(120, 135);
+            ctx.lineTo(150, 135);
+        }
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(230, 115);
+        ctx.lineTo(270, 115);
+        ctx.stroke();
+
+        let output = computeOutput(switch1, switch2, gateType);
+        ctx.fillStyle = output ? "yellow" : "gray";
+        ctx.beginPath();
+        ctx.arc(300, 115, 15, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+    }
+
+    canvas.addEventListener("click", function(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        if (x >= 50 && x <= 90 && y >= 50 && y <= 90) {
+            switch1 = !switch1;
+        }
+        if (x >= 50 && x <= 90 && y >= 150 && y <= 190) {
+            switch2 = !switch2;
+        }
+        drawCircuit();
+    });
+
+    drawCircuit();
+    updateTruthTable();
+</script>
+
+
+</body>
+</html>

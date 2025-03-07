@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplexer Simulation</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+            background-color: #f8f8f8;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            align-items: flex-start;
+        }
+        canvas {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+        .table-container {
+            margin-left: 20px;
+            border-collapse: collapse;
+        }
+        .table-container th, .table-container td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                overflow: hidden;
+
+            }
+            table {
+                max-width: 100%;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <table class="table-container" id="truthTable">
+        <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>C</th>
+            <th>Y</th>
+        </tr>
+    </table>
+</div>
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let CS = 1;
+    let A = 0;
+    let B = 0;
+    let C = 0;
+    let D = ["red", "blue", "green", "yellow", "purple", "orange", "pink", "cyan"];
+    const selectors = [
+        {label: "A", x: 160, y: 140, state: () => A, toggle: () => A = A ? 0 : 1},
+        {label: "B", x: 160, y: 175, state: () => B, toggle: () => B = B ? 0 : 1},
+        {label: "C", x: 160, y: 210, state: () => C, toggle: () => C = C ? 0 : 1},
+    ];
+
+    function getMuxOutput() {
+        if (CS === 0) return "gray";
+        const sel = (C << 2) | (B << 1) | A;
+        return D[sel];
+    }
+
+    function updateTruthTable() {
+        const table = document.getElementById("truthTable");
+        table.innerHTML = `<tr><th>A</th><th>B</th><th>C</th><th>Y</th></tr>`;
+        for (let i = 0; i < 8; i++) {
+            let row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${(i & 1) ? 1 : 0}</td>
+                <td>${(i & 2) ? 1 : 0}</td>
+                <td>${(i & 4) ? 1 : 0}</td>
+                <td style="background-color: ${D[i]};">D${i}</td>
+            `;
+            table.appendChild(row);
+        }
+    }
+
+    function drawMultiplexer() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = "black";
+        ctx.strokeRect(180, 80, 180, 400);
+        ctx.font = "18px Arial";
+        ctx.fillText("MUX", 250, 100);
+
+        let shift = -100;
+
+        ctx.fillText("CS", 120 + shift + 30, 110);
+        ctx.fillStyle = CS ? "green" : "red";
+        ctx.fillRect(150 + shift + 31, 90, 30, 30);
+        ctx.beginPath();
+        ctx.moveTo(150 + shift + 61, 105);
+        ctx.lineTo(180, 105);
+        ctx.stroke();
+        let iteration = 0;
+
+        selectors.forEach(({label, x, y, state}) => {
+
+
+            ctx.fillStyle = state() ? "green" : "red";
+            ctx.fillRect(x + shift + 31, y, 30, 30);
+            ctx.beginPath();
+            ctx.moveTo(x + shift + 61, y + 15);
+            ctx.lineTo(180, y + 15);
+            ctx.fillStyle = "black";
+            ctx.fillText(label, x + shift + 10, y + 5 + 15);
+            ctx.fillText(iteration, x + shift + 10 + 100 + 20, y + 5 + 15);
+
+            iteration++;
+            ctx.stroke();
+        });
+
+
+        ctx.font = "110px Arial";
+
+        ctx.fillText("}", 160 + shift + 10 + 100 + 30, 175 + 5 + 15 + 23);
+
+        ctx.font = "18px Arial";
+
+        ctx.fillText("0", 160 + shift + 200 + 15- 13, 175 + 10 );
+        ctx.font = "22px Arial";
+        ctx.fillText("-", 160 + shift + 200 + 15+1- 13, 175 + 10 + 10 );
+        ctx.font = "18px Arial";
+
+        ctx.fillText("7", 160 + shift + 200 + 15 - 13, 175 + 20 + 10 );
+
+        ctx.fillText("G", 160 + shift + 10 + 100 + 20 + 50, 175 + 5 + 15 );
+
+
+
+        for (let i = 0; i < 8; i++) {
+            ctx.fillStyle = D[i];
+            ctx.fillRect(150 + shift + 31, 250 + i * 25, 25, 25);
+            ctx.fillStyle = "black";
+            ctx.fillText(`D${i}`, 120 + shift + 31, 270 + i * 25);
+            ctx.beginPath();
+            ctx.moveTo(150 + shift + 56, 250 + i * 25 + 12.5);
+            ctx.lineTo(180, 250 + i * 25 + 12.5);
+            ctx.stroke();
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(360, 220);
+        ctx.lineTo(400, 220);
+        ctx.stroke();
+        ctx.fillStyle = getMuxOutput();
+        ctx.beginPath();
+        ctx.arc(420, 220, 20, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = "black";
+        ctx.fillText("Y", 450, 220);
+    }
+
+    canvas.addEventListener("click", function(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        if (x >= 150 - 69 && x <= 180 - 69 && y >= 90 && y <= 120) {
+            CS = CS ? 0 : 1;
+        }
+
+        selectors.forEach(selector => {
+            if (x >= selector.x - 69 && x <= selector.x - 39 && y >= selector.y && y <= selector.y + 30) {
+                selector.toggle();
+            }
+        });
+
+        drawMultiplexer();
+        updateTruthTable();
+    });
+
+    drawMultiplexer();
+    updateTruthTable();
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 1276 558" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g>
+        <path d="M160.823,506.388L160.846,514.033" style="fill:none;stroke:black;stroke-width:3px;"/>
+        <path d="M46.193,496.675L48.145,506.049L160.977,506.194L273.152,505.686L274.437,497.779" style="fill:none;stroke:black;stroke-width:3px;"/>
+    </g>
+    <path d="M1071.2,426.846L1140.41,367.83L1203.68,431.101" style="fill:none;"/>
+    <clipPath id="_clip1">
+        <path d="M1071.2,426.846L1140.41,367.83L1203.68,431.101"/>
+    </clipPath>
+    <g clip-path="url(#_clip1)">
+        <g>
+            <g>
+                <path d="M46.18,497.312L47.819,505.924L273.084,505.39L274.421,497.131" style="fill:none;stroke:black;stroke-width:3px;"/>
+                <path d="M160.158,505.93L160.318,515.006" style="fill:none;stroke:black;stroke-width:3px;"/>
+            </g>
+            <path d="M1134.73,329.344L1002.69,185.839L869.931,326.917" style="fill:none;stroke:black;stroke-width:3px;"/>
+            <path d="M232.98,426.445L299.172,381.723L370.452,425.701" style="fill:none;stroke:black;stroke-width:3px;"/>
+            <path d="M300.992,322.376L442.435,275.327L580.509,323.34" style="fill:none;stroke:black;stroke-width:3px;"/>
+            <path d="M91.75,277.537L92.393,426.122" style="fill:none;stroke:black;stroke-width:3px;"/>
+            <path d="M99.473,217.943L272.827,181.954L444.88,220.122" style="fill:none;stroke:black;stroke-width:3px;"/>
+        </g>
+    </g>
+    <path d="M1071.2,426.846L1140.41,367.83L1203.68,431.101" style="fill:none;stroke:black;stroke-width:3px;"/>
+    <path d="M791.417,427.742L860.497,366.825L932.358,426.833" style="fill:none;stroke:black;stroke-width:3px;"/>
+    <g transform="matrix(1,0,0,1,-557.694,-4.37085)">
+        <path d="M791.417,427.742L860.497,366.825L932.358,426.833" style="fill:none;stroke:black;stroke-width:3px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,-275.665,3.14889)">
+        <path d="M791.417,427.742L860.497,366.825L932.358,426.833" style="fill:none;stroke:black;stroke-width:3px;"/>
+    </g>
+    <g transform="matrix(1,0,0,1,39.3324,8.67229)">
+        <text x="17.655px" y="442.415px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">MROM</text>
+    </g>
+    <g transform="matrix(1,0,0,1,176.068,8.67229)">
+        <text x="19.647px" y="442.415px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">PROM</text>
+    </g>
+    <g transform="matrix(1,0,0,1,104.552,96.7842)">
+        <text x="-9.064px" y="442.415px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">irreversibel</text>
+    </g>
+    <path d="M984.443,91.351L621.052,42.026L282.091,91.883" style="fill:none;stroke:black;stroke-width:3px;"/>
+    <g transform="matrix(1,0,0,1,315.832,8.67229)">
+        <text x="11.643px" y="442.415px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">EPROM</text>
+    </g>
+    <g transform="matrix(1,0,0,1,455.19,8.67229)">
+        <text x="3.639px" y="442.415px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">EEPROM</text>
+    </g>
+    <g transform="matrix(1,0,0,1,596.461,8.37932)">
+        <text x="20.309px" y="442.415px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">Flash-</text>
+        <text x="3.639px" y="467.201px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">EEPROM</text>
+    </g>
+    <g transform="matrix(1,0,0,1,730.327,8.37932)">
+        <text x="-3.052px" y="442.415px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">statisches</text>
+        <text x="28.319px" y="467.201px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">RAM</text>
+        <text x="12.323px" y="491.986px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">(SRAM)</text>
+    </g>
+    <g transform="matrix(1,0,0,1,882.158,8.37932)">
+        <text x="-20.39px" y="442.415px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">dynamisches</text>
+        <text x="28.319px" y="467.201px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">RAM</text>
+        <text x="11.661px" y="491.986px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">(DRAM)</text>
+    </g>
+    <g transform="matrix(1,0,0,1,1013.76,8.37932)">
+        <text x="20.989px" y="442.415px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">FRAM</text>
+    </g>
+    <g transform="matrix(1,0,0,1,1153.12,4.94514)">
+        <text x="45.645px" y="442.415px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:24px;">...</text>
+    </g>
+    <path d="M1140.24,327.011L1001.63,176.863L856.822,327.418" style="fill:none;stroke:black;stroke-width:3px;"/>
+    <path d="M445.261,221.061L265.923,175.962L103.532,219.741" style="fill:none;stroke:black;stroke-width:3px;"/>
+    <path d="M588.257,323.83L438.431,273.679L299.221,326.458" style="fill:none;stroke:black;stroke-width:3px;"/>
+    <g transform="matrix(1,0,0,1,-362.735,2.16401)">
+        <g transform="matrix(1,0,0,1,364.106,-1.94956)">
+            <rect x="126.254" y="91.335" width="295.28" height="91.906" style="fill:rgb(235,235,235);stroke:black;stroke-width:3px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-32.0574,8.64753)">
+            <text x="549.838px" y="111.344px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">ROM / Festwertspeicher /</text>
+            <text x="599.872px" y="131.999px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">nichtﬂüchtiger</text>
+            <text x="582.611px" y="152.653px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">Halbleiterspeicher</text>
+        </g>
+        <g transform="matrix(1,0,0,1,362.735,-2.16401)">
+            <path d="M98.922,267.276L98.922,421.56" style="fill:none;stroke:black;stroke-width:3px;"/>
+        </g>
+    </g>
+    <g transform="matrix(1,0,0,1,-35.2513,-81.8913)">
+        <g transform="matrix(1,0,0,0.39505,387.871,53.3037)">
+            <rect x="126.254" y="91.335" width="295.28" height="91.906" style="fill:rgb(235,235,235);stroke:black;stroke-width:3.95px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,24.364,1.38066)">
+            <text x="549.838px" y="111.344px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">Halbleiterspeicher</text>
+        </g>
+    </g>
+    <g transform="matrix(1,0,0,1,111.255,123.7)">
+        <g transform="matrix(1,0,0,1,617.695,-123.615)">
+            <rect x="126.254" y="91.335" width="295.28" height="91.906" style="fill:rgb(235,235,235);stroke:black;stroke-width:3px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,243.851,-102.691)">
+            <text x="549.838px" y="111.344px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">RAM / Schreib-Lese-</text>
+            <text x="604.838px" y="131.999px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">Speicher</text>
+        </g>
+    </g>
+    <g transform="matrix(1,0,0,1,34.426,360.262)">
+        <g transform="matrix(0.358676,0,0,0.495386,728.462,-77.526)">
+            <rect x="126.254" y="91.335" width="295.28" height="91.906" style="fill:rgb(235,235,235);stroke:black;stroke-width:6.94px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,180.111,-115.684)">
+            <text x="610.975px" y="111.344px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">ﬂüchtig</text>
+        </g>
+    </g>
+    <g transform="matrix(1,0,0,1,-183.636,192.467)">
+        <g transform="matrix(0.666425,0,0,0.674633,443.757,-36.9445)">
+            <rect x="126.254" y="91.335" width="295.28" height="91.906" style="fill:rgb(235,235,235);stroke:black;stroke-width:4.47px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-21.5981,-60.9431)">
+            <text x="597.069px" y="111.344px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">anwender-</text>
+            <text x="569.833px" y="131.999px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">programmierbar</text>
+        </g>
+    </g>
+    <g transform="matrix(1,0,0,1,-507.831,296.19)">
+        <g transform="matrix(0.666425,0,0,0.674633,427.192,-142.123)">
+            <rect x="126.254" y="91.335" width="295.28" height="91.906" style="fill:rgb(235,235,235);stroke:black;stroke-width:4.47px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-38.1629,-166.122)">
+            <text x="598.724px" y="111.344px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">hersteller-</text>
+            <text x="569.833px" y="131.999px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">programmierbar</text>
+        </g>
+        <g transform="matrix(0.666425,0,0,0.674633,628.926,-36.8307)">
+            <rect x="126.254" y="91.335" width="295.28" height="91.906" style="fill:rgb(235,235,235);stroke:black;stroke-width:4.47px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,163.571,-60.8294)">
+            <text x="632.079px" y="111.344px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">mit</text>
+            <text x="560.38px" y="131.999px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">Programmiergerät</text>
+        </g>
+        <g transform="matrix(0.666425,0,0,0.674633,905.637,-37.5716)">
+            <rect x="126.254" y="91.335" width="295.28" height="91.906" style="fill:rgb(235,235,235);stroke:black;stroke-width:4.47px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,440.282,-61.5702)">
+            <text x="586.512px" y="111.344px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">im Betrieb in</text>
+            <text x="580.404px" y="131.999px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">der Schaltung</text>
+        </g>
+    </g>
+    <g transform="matrix(1,0,0,1,287.398,361.234)">
+        <g transform="matrix(0.497337,0,0,0.495386,714.018,-78.0784)">
+            <rect x="126.254" y="91.335" width="295.28" height="91.906" style="fill:rgb(235,235,235);stroke:black;stroke-width:6.04px;"/>
+        </g>
+        <g transform="matrix(1,0,0,1,203.645,-116.236)">
+            <text x="587.089px" y="111.344px" style="font-family:'Arial-BoldMT', 'Arial', sans-serif;font-weight:700;font-size:20px;">nichtﬂüchtig</text>
+        </g>
+    </g>
+</svg>
