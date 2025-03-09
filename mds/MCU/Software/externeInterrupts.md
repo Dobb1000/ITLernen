@@ -46,7 +46,7 @@ attachInterrupt(digitalPinToInterrupt(pinA), funktionB, TRIGGER);
 detachInterrupt(digitalPinToInterrupt(pinA));
 ```
 
-## Codebeispiel
+## Codebeispiel für einen externen Interrupt
 
 <div id="iframecontainer" style="position: relative; width: 100%; height: 50vh;">
   <iframe src="https://wokwi.com/projects/424714447051988993" id="not" style="filter: blur(5px); width: 100%; height: 100%; border: none;pointer-events: none"></iframe>

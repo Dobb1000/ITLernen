@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Slot Machine</title>
+  <meta charset="utf-8" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="viewport" content="width=480,initial-scale=1, maximum-scale=1" />
+  <link rel="icon" href="./img/Cherry.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" />
+  <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+
+
+  <link href="/ITLernen/assets/img/favicon.png" rel="icon">
+  <link href="/ITLernen/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/ITLernen/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/ITLernen/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/ITLernen/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/ITLernen/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/ITLernen/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="/ITLernen/assets/css/main.css" rel="stylesheet">
+
+</head>
+<body>
+<div id="header-container"></div>
+
+  <div class="game-container">
+    <!-- Winner Display -->
+    <div class="winner-display mb-3">
+      <span>WIN:
+
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512; width: 4vw; height: 4vh" class="flex-md-shrink-0" xml:space="preserve"><g><g fill-rule="evenodd"><g fill="#3f4c63"><path d="M0 169.348c0 10.41 8.535 18.945 18.945 18.945h31.266l18.625-18.094-18.625-19.8H18.945C8.535 150.398 0 158.905 0 169.347zM0 255.984c0 10.442 8.535 18.977 18.945 18.977h31.266l18.625-20.18L50.21 237.04H18.945C8.535 237.04 0 245.574 0 255.984zM0 342.652c0 10.414 8.535 18.95 18.945 18.95h31.266l18.625-19.887L50.21 323.68H18.945C8.535 323.676 0 332.21 0 342.652zM150.398 461.79v31.265c0 10.41 8.508 18.945 18.95 18.945 10.41 0 18.945-8.535 18.945-18.945v-31.266l-18.3-25.02zM237.04 461.79v31.265c0 10.41 8.534 18.945 18.944 18.945 10.442 0 18.977-8.535 18.977-18.945v-31.266l-23.2-25.867zM323.676 493.055c0 10.41 8.535 18.945 18.976 18.945 10.414 0 18.95-8.535 18.95-18.945v-31.266l-22.555-27.922-15.367 27.922v31.266zM461.79 323.676l-18.892 18.976 18.891 18.95h31.266c10.41 0 18.945-8.536 18.945-18.95 0-10.441-8.535-18.976-18.945-18.976zM461.79 274.96h31.265c10.41 0 18.945-8.534 18.945-18.976 0-10.41-8.535-18.945-18.945-18.945h-31.266l-18.625 20.852zM461.79 150.398l-19.27 16.336 19.27 21.559h31.265c10.41 0 18.945-8.535 18.945-18.945 0-10.442-8.535-18.95-18.945-18.95zM323.676 18.945v31.266l16.133 13.96 21.793-13.96V18.945c0-10.41-8.536-18.945-18.95-18.945-10.441 0-18.976 8.535-18.976 18.945zM237.04 50.21l16.218 15.372 21.703-15.371V18.945C274.96 8.535 266.426 0 255.984 0c-10.41 0-18.945 8.535-18.945 18.945zM150.398 18.945v31.266l19.594 15.371 18.301-15.371V18.945C188.293 8.535 179.758 0 169.348 0c-10.442 0-18.95 8.535-18.95 18.945zm0 0" fill="#3f4c63" opacity="1" data-original="#3f4c63"></path></g><path fill="#55cf63" d="M50.21 82.328v347.344c0 17.656 14.43 32.117 32.118 32.117h347.344c17.656 0 32.117-14.46 32.117-32.117V82.328c0-17.687-14.46-32.117-32.117-32.117H82.328c-17.687 0-32.117 14.43-32.117 32.117zm0 0" opacity="1" data-original="#55cf63"></path><path fill="#e6e6e6" d="M124.238 367.172c0 11.32 9.27 20.59 20.563 20.59 74.14-.032 148.258-.032 222.37 0 11.321 0 20.59-9.27 20.59-20.59-.027-74.113-.027-148.23 0-222.375 0-11.29-9.269-20.559-20.59-20.559h-222.37c-11.293 0-20.563 9.27-20.563 20.559zm0 0" opacity="1" data-original="#e6e6e6"></path><path fill="#32a352" d="M50.21 150.398v279.274c0 17.656 14.43 32.117 32.118 32.117h25.016c-17.656 0-32.114-14.46-32.114-32.117V82.328c0-17.687 14.457-32.117 32.114-32.117H82.328c-17.687 0-32.117 14.43-32.117 32.117zm0 0" opacity="1" data-original="#32a352"></path><path fill="#b3b3b3" d="M124.238 208.59V367.17c0 11.321 9.27 20.59 20.563 20.59h5.219c6.484 0 12.964 0 19.445-.03-11.235-.06-20.414-9.297-20.414-20.56V144.798c0-11.29 9.27-20.559 20.562-20.559h-24.812c-11.293 0-20.563 9.27-20.563 20.559v18.39zM176.21 188.676v134.648c0 6.836 5.602 12.438 12.466 12.438h134.648c6.836 0 12.438-5.602 12.438-12.438V188.676c0-6.864-5.602-12.465-12.438-12.465H188.676c-6.864 0-12.465 5.601-12.465 12.465zm0 0" opacity="1" data-original="#b3b3b3"></path><path fill="#888b99" d="M176.21 188.676v134.648c0 6.836 5.602 12.438 12.466 12.438h24.46c-6.835 0-12.437-5.602-12.437-12.438V188.676c0-6.805 5.543-12.406 12.348-12.465h-24.371c-6.863 0-12.465 5.601-12.465 12.465zm0 0" opacity="1" data-original="#888b99"></path></g></g></svg>
+
+        <span id="win-amount"></span></span>
+    </div>
+
+    <!-- Canvas Placeholder -->
+    <canvas id="slot" width="440" height="240"></canvas>
+
+    <!-- Button Controls -->
+    <div class="controls d-flex align-items-end px-1 mt-3">
+      <div class="left d-flex flex-column align-items-start justify-content-between h-100">
+        <span style="color: #000 !important;">Credit:             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512; width: 3vw; height: 3vh" class="flex-md-shrink-0" xml:space="preserve"><g><g fill-rule="evenodd"><g fill="#3f4c63"><path d="M0 169.348c0 10.41 8.535 18.945 18.945 18.945h31.266l18.625-18.094-18.625-19.8H18.945C8.535 150.398 0 158.905 0 169.347zM0 255.984c0 10.442 8.535 18.977 18.945 18.977h31.266l18.625-20.18L50.21 237.04H18.945C8.535 237.04 0 245.574 0 255.984zM0 342.652c0 10.414 8.535 18.95 18.945 18.95h31.266l18.625-19.887L50.21 323.68H18.945C8.535 323.676 0 332.21 0 342.652zM150.398 461.79v31.265c0 10.41 8.508 18.945 18.95 18.945 10.41 0 18.945-8.535 18.945-18.945v-31.266l-18.3-25.02zM237.04 461.79v31.265c0 10.41 8.534 18.945 18.944 18.945 10.442 0 18.977-8.535 18.977-18.945v-31.266l-23.2-25.867zM323.676 493.055c0 10.41 8.535 18.945 18.976 18.945 10.414 0 18.95-8.535 18.95-18.945v-31.266l-22.555-27.922-15.367 27.922v31.266zM461.79 323.676l-18.892 18.976 18.891 18.95h31.266c10.41 0 18.945-8.536 18.945-18.95 0-10.441-8.535-18.976-18.945-18.976zM461.79 274.96h31.265c10.41 0 18.945-8.534 18.945-18.976 0-10.41-8.535-18.945-18.945-18.945h-31.266l-18.625 20.852zM461.79 150.398l-19.27 16.336 19.27 21.559h31.265c10.41 0 18.945-8.535 18.945-18.945 0-10.442-8.535-18.95-18.945-18.95zM323.676 18.945v31.266l16.133 13.96 21.793-13.96V18.945c0-10.41-8.536-18.945-18.95-18.945-10.441 0-18.976 8.535-18.976 18.945zM237.04 50.21l16.218 15.372 21.703-15.371V18.945C274.96 8.535 266.426 0 255.984 0c-10.41 0-18.945 8.535-18.945 18.945zM150.398 18.945v31.266l19.594 15.371 18.301-15.371V18.945C188.293 8.535 179.758 0 169.348 0c-10.442 0-18.95 8.535-18.95 18.945zm0 0" fill="#3f4c63" opacity="1" data-original="#3f4c63"></path></g><path fill="#55cf63" d="M50.21 82.328v347.344c0 17.656 14.43 32.117 32.118 32.117h347.344c17.656 0 32.117-14.46 32.117-32.117V82.328c0-17.687-14.46-32.117-32.117-32.117H82.328c-17.687 0-32.117 14.43-32.117 32.117zm0 0" opacity="1" data-original="#55cf63"></path><path fill="#e6e6e6" d="M124.238 367.172c0 11.32 9.27 20.59 20.563 20.59 74.14-.032 148.258-.032 222.37 0 11.321 0 20.59-9.27 20.59-20.59-.027-74.113-.027-148.23 0-222.375 0-11.29-9.269-20.559-20.59-20.559h-222.37c-11.293 0-20.563 9.27-20.563 20.559zm0 0" opacity="1" data-original="#e6e6e6"></path><path fill="#32a352" d="M50.21 150.398v279.274c0 17.656 14.43 32.117 32.118 32.117h25.016c-17.656 0-32.114-14.46-32.114-32.117V82.328c0-17.687 14.457-32.117 32.114-32.117H82.328c-17.687 0-32.117 14.43-32.117 32.117zm0 0" opacity="1" data-original="#32a352"></path><path fill="#b3b3b3" d="M124.238 208.59V367.17c0 11.321 9.27 20.59 20.563 20.59h5.219c6.484 0 12.964 0 19.445-.03-11.235-.06-20.414-9.297-20.414-20.56V144.798c0-11.29 9.27-20.559 20.562-20.559h-24.812c-11.293 0-20.563 9.27-20.563 20.559v18.39zM176.21 188.676v134.648c0 6.836 5.602 12.438 12.466 12.438h134.648c6.836 0 12.438-5.602 12.438-12.438V188.676c0-6.864-5.602-12.465-12.438-12.465H188.676c-6.864 0-12.465 5.601-12.465 12.465zm0 0" opacity="1" data-original="#b3b3b3"></path><path fill="#888b99" d="M176.21 188.676v134.648c0 6.836 5.602 12.438 12.466 12.438h24.46c-6.835 0-12.437-5.602-12.437-12.438V188.676c0-6.805 5.543-12.406 12.348-12.465h-24.371c-6.863 0-12.465 5.601-12.465 12.465zm0 0" opacity="1" data-original="#888b99"></path></g></g></svg>
+<span id="credits" style="color: #000 !important;" class="credit text-white"></span></span>
+        <span style="color: #000 !important;">Bet:             <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" x="0" y="0" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512; width: 3vw; height: 3vh" class="flex-md-shrink-0" xml:space="preserve"><g><g fill-rule="evenodd"><g fill="#3f4c63"><path d="M0 169.348c0 10.41 8.535 18.945 18.945 18.945h31.266l18.625-18.094-18.625-19.8H18.945C8.535 150.398 0 158.905 0 169.347zM0 255.984c0 10.442 8.535 18.977 18.945 18.977h31.266l18.625-20.18L50.21 237.04H18.945C8.535 237.04 0 245.574 0 255.984zM0 342.652c0 10.414 8.535 18.95 18.945 18.95h31.266l18.625-19.887L50.21 323.68H18.945C8.535 323.676 0 332.21 0 342.652zM150.398 461.79v31.265c0 10.41 8.508 18.945 18.95 18.945 10.41 0 18.945-8.535 18.945-18.945v-31.266l-18.3-25.02zM237.04 461.79v31.265c0 10.41 8.534 18.945 18.944 18.945 10.442 0 18.977-8.535 18.977-18.945v-31.266l-23.2-25.867zM323.676 493.055c0 10.41 8.535 18.945 18.976 18.945 10.414 0 18.95-8.535 18.95-18.945v-31.266l-22.555-27.922-15.367 27.922v31.266zM461.79 323.676l-18.892 18.976 18.891 18.95h31.266c10.41 0 18.945-8.536 18.945-18.95 0-10.441-8.535-18.976-18.945-18.976zM461.79 274.96h31.265c10.41 0 18.945-8.534 18.945-18.976 0-10.41-8.535-18.945-18.945-18.945h-31.266l-18.625 20.852zM461.79 150.398l-19.27 16.336 19.27 21.559h31.265c10.41 0 18.945-8.535 18.945-18.945 0-10.442-8.535-18.95-18.945-18.95zM323.676 18.945v31.266l16.133 13.96 21.793-13.96V18.945c0-10.41-8.536-18.945-18.95-18.945-10.441 0-18.976 8.535-18.976 18.945zM237.04 50.21l16.218 15.372 21.703-15.371V18.945C274.96 8.535 266.426 0 255.984 0c-10.41 0-18.945 8.535-18.945 18.945zM150.398 18.945v31.266l19.594 15.371 18.301-15.371V18.945C188.293 8.535 179.758 0 169.348 0c-10.442 0-18.95 8.535-18.95 18.945zm0 0" fill="#3f4c63" opacity="1" data-original="#3f4c63"></path></g><path fill="#55cf63" d="M50.21 82.328v347.344c0 17.656 14.43 32.117 32.118 32.117h347.344c17.656 0 32.117-14.46 32.117-32.117V82.328c0-17.687-14.46-32.117-32.117-32.117H82.328c-17.687 0-32.117 14.43-32.117 32.117zm0 0" opacity="1" data-original="#55cf63"></path><path fill="#e6e6e6" d="M124.238 367.172c0 11.32 9.27 20.59 20.563 20.59 74.14-.032 148.258-.032 222.37 0 11.321 0 20.59-9.27 20.59-20.59-.027-74.113-.027-148.23 0-222.375 0-11.29-9.269-20.559-20.59-20.559h-222.37c-11.293 0-20.563 9.27-20.563 20.559zm0 0" opacity="1" data-original="#e6e6e6"></path><path fill="#32a352" d="M50.21 150.398v279.274c0 17.656 14.43 32.117 32.118 32.117h25.016c-17.656 0-32.114-14.46-32.114-32.117V82.328c0-17.687 14.457-32.117 32.114-32.117H82.328c-17.687 0-32.117 14.43-32.117 32.117zm0 0" opacity="1" data-original="#32a352"></path><path fill="#b3b3b3" d="M124.238 208.59V367.17c0 11.321 9.27 20.59 20.563 20.59h5.219c6.484 0 12.964 0 19.445-.03-11.235-.06-20.414-9.297-20.414-20.56V144.798c0-11.29 9.27-20.559 20.562-20.559h-24.812c-11.293 0-20.563 9.27-20.563 20.559v18.39zM176.21 188.676v134.648c0 6.836 5.602 12.438 12.466 12.438h134.648c6.836 0 12.438-5.602 12.438-12.438V188.676c0-6.864-5.602-12.465-12.438-12.465H188.676c-6.864 0-12.465 5.601-12.465 12.465zm0 0" opacity="1" data-original="#b3b3b3"></path><path fill="#888b99" d="M176.21 188.676v134.648c0 6.836 5.602 12.438 12.466 12.438h24.46c-6.835 0-12.437-5.602-12.437-12.438V188.676c0-6.805 5.543-12.406 12.348-12.465h-24.371c-6.863 0-12.465 5.601-12.465 12.465zm0 0" opacity="1" data-original="#888b99"></path></g></g></svg>
+<span id="bet" style="color: #000 !important;" class="bet text-white">1</span></span>
+      </div>
+      <div class="mx-4 middle d-flex align-items-end justify-content-between">
+        <button id="minus-bet" class="bet-action-btn">
+          <i class="fas fa-minus"></i>
+        </button>
+        <button class="align-items-center d-flex gap-2" id="spin-manual">
+          <i class="fas fa-sync-alt"></i>
+          <b>SPIN</b>
+        </button>
+        <button id="plus-bet" class="bet-action-btn">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <div class="right d-flex flex-column align-items-end justify-content-between gap-1">
+        <button class="align-items-center d-flex gap-1" id="pay-table" data-bs-toggle="modal" data-bs-target="#pay-table-modal">
+          <i style="color: #fff" class="fas fa-table"></i>
+          <b style="color: #fff">Pay Table</b>
+        </button>
+        <button class="align-items-center control-btn d-flex gap-1" id="spin-auto">
+          <i style="color: #fff" class="fas fa-play"></i>
+          <b style="color: #fff">AUTO | OFF</b>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade modal-fullscreen-sm-down modal-lg" id="pay-table-modal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" style="color: #fff">Pay Table für 1. Chip</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://unpkg.com/@n1md7/html-table-builder@1.0.1/dist/table_builder.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="./js/main.mjs"></script>
+  <script src="/ITLernen/assets/js/loadheader.js"></script>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+</body>
+</html>

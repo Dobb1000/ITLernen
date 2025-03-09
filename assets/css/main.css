@@ -20,6 +20,8 @@
 }
 
 
+
+
 .stats .stats-item {
   border-radius: 25px;
 }
@@ -50,6 +52,7 @@
     transform: translate(-50%, -50%);
     z-index: 0;
   }
+
 
 
 
@@ -248,6 +251,8 @@ h6 {
   .header .navmenu {
     order: 3;
   }
+
+
 }
 
 .scrolled .header {
@@ -274,6 +279,8 @@ h6 {
   .navmenu {
     padding: 0;
   }
+
+
 
   .navmenu ul {
     margin: 0;
@@ -388,6 +395,9 @@ h6 {
 
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
+  #coinsshow {
+    display: none !important;
+  }
   .container {
     display: block !important;
   }

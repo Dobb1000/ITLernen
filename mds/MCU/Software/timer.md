@@ -1,26 +1,52 @@
 # Timer und Interrupts
 
 ## Prinzip
+
 Ein Timer ist ein Zähler, der auf Basis eines Taktsignals arbeitet. Mithilfe eines Timers können zeitgesteuerte Aufgaben wie Signalverarbeitung oder periodische Ereignisse realisiert werden. Die Hauptkomponenten eines Timers sind der **Prescaler**, der **Counter** und das **Autoreloadregister (ARR)**.
 
 ## Funktionen der Komponenten
 
 ### 1. Prescaler
+
 Der Prescaler teilt die Taktfrequenz, um die Zählgeschwindigkeit des Timers zu verringern. Dadurch können auch bei hohen Taktfrequenzen des Mikrocontrollers längere Zeiträume erfasst werden. Beispielsweise reduziert ein Prescaler von 32 eine Taktfrequenz von 32 MHz auf 1 MHz.
 
 ### 2. Counter
+
 Der Zähler zählt die Takte, die nach der Prescaler-Division übrig bleiben. Sobald der Zähler den im ARR festgelegten Maximalwert erreicht, wird er zurückgesetzt (**Überlauf**) und kann ein Ereignis wie einen Interrupt auslösen.
 
 ### 3. Autoreloadregister (ARR)
+
 Das ARR legt den Maximalwert des Zählers fest. Der Timer zählt von 0 bis zum ARR-Wert. Nach einem **Überlauf** wird der Zähler automatisch zurückgesetzt. Damit lässt sich die Dauer eines Timer-Zyklus bestimmen.
 
+## Wichtige Formeln
+
+Die Dauer eines Timer-Zyklus lässt sich berechnen als:
+
+$$D = T \times O$$
+
+wobei:
+
+- $D$ die Gesamtdauer ist,
+- $T$ die Periode eines einzelnen Takts,
+- $O$ die Anzahl der Overflows.
+
+Die Periode $T$ des Timers ergibt sich aus:
+
+$$T = \frac{1}{f}$$
+
+Die Frequenz $f$ des Timers berechnet sich durch:
+
+$$f = \frac{32 \ MHz}{\text{Prescaler}}$$
+
 ## Ablauf eines Timers
+
 1. Der Systemtakt wird durch den Prescaler geteilt.
 2. Der reduzierte Takt wird vom Counter gezählt.
 3. Beim Erreichen des ARR-Wertes wird ein **Überlauf** ausgelöst.
 4. Bei aktiviertem Interrupt wird die zugehörige ISR (Interrupt Service Routine) ausgeführt.
 
 ## Erstellen eines Timer-Objekts
+
 Ein Timer-Objekt kann folgendermaßen erstellt werden:
 
 ```cpp
@@ -46,6 +72,7 @@ mytimer.setPrescaleFactor(x);
 ```
 
 **Hinweise:**
+
 - Der Overflow kann maximal **32 Bit** lang sein.
 - Der Prescaler-Faktor kann maximal **16 Bit** lang sein.
 - Es sollte der Prescaler so gering wie möglich gehalten werden und der 32-Bit-Overflow voll durchgezählt werden (Empfehlung von Straub).
