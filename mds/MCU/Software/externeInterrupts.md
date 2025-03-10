@@ -9,9 +9,8 @@
 
 <br>
 
-
-
 ## Polling vs. Interrupt
+
 | Polling | Interrupt |
 |---------|----------|
 | Ständiges Abfragen eines Signals | Reagiert nur, wenn ein Ereignis eintritt |
@@ -23,14 +22,13 @@
 ```cpp
 attachInterrupt(digitalPinToInterrupt(pinA), funktionB, TRIGGER);
 ```
-- `pinA` = Pin, der auf das Signal reagiert  
-- `funktionB` = Funktion, die beim Interrupt aufgerufen wird  
+- `pinA` = Pin, der auf das Signal reagiert
+- `funktionB` = Funktion, die beim Interrupt aufgerufen wird
 - `FALLING` = Flanke, die den Interrupt auslöst
 
 ### Mögliche Trigger-Bedingungen:
 
 <img style="float: right;width: 50%" src="/ITLernen/tutorial/MCU/Software/img/falling_rising_change.jpg">
-
 
 - `FALLING` – fallende Flanke
 - `RISING` – steigende Flanke
@@ -45,6 +43,37 @@ attachInterrupt(digitalPinToInterrupt(pinA), funktionB, TRIGGER);
 ```cpp
 detachInterrupt(digitalPinToInterrupt(pinA));
 ```
+
+## Interrupt-Prioritäten und NVIC
+
+
+### Interrupt-Prioritäten
+- Bei Mikrocontrollern mit mehreren Interrupts kann es notwendig sein, Prioritäten festzulegen.
+- Die Priorität bestimmt, welcher Interrupt zuerst behandelt wird, wenn mehrere gleichzeitig auftreten.
+- Eine niedrigere Zahl bedeutet eine höhere Priorität (z. B. Priorität 0 ist die höchste).
+
+<img style="" src="/ITLernen/tutorial/MCU/Software/img/interrupt_prio.svg">
+
+
+### NVIC (Nested Vectored Interrupt Controller)
+
+<img style="float: right;width: 50%" src="/ITLernen/tutorial/MCU/Software/img/NVIC.png">
+
+
+- Der NVIC ist eine Hardwarekomponente in ARM-basierten Mikrocontrollern, die Interrupts verwaltet.
+- Er erlaubt:
+  - Priorisierung von Interrupts
+  - Verschachtelte Interrupts (Nested Interrupts)
+  - Aktivierung und Deaktivierung einzelner Interrupts
+
+### Beispiel: Interrupt-Priorität setzen (STM32)
+```cpp
+HAL_NVIC_SetPriority(EXTI0_IRQn, 1, 0);
+HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+```
+- `EXTI0_IRQn` = Interrupt-Nummer
+- `1` = Prioritätslevel (0 = höchste Priorität)
+- `0` = Subpriorität (für gleiche Prioritätsstufen)
 
 ## Codebeispiel für einen externen Interrupt
 
@@ -67,6 +96,6 @@ border-radius: 5px;">
 Drück mich für das Codebeispiel!
 </button>
 
-  
+
   <div class="error" style="position: absolute; bottom: 10px; left: 10px; color: red;"></div>
 </div>
