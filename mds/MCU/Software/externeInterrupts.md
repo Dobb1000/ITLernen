@@ -18,6 +18,9 @@
 | Verzögerungen möglich | Sofortige Reaktion |
 
 ## Verwendung von Interrupts in Arduino
+### Hinweis: Variable(n) in der ISR sollten als `volatile` deklariert werden
+
+
 ### Interrupt setzen:
 ```cpp
 attachInterrupt(digitalPinToInterrupt(pinA), funktionB, TRIGGER);
@@ -66,14 +69,6 @@ detachInterrupt(digitalPinToInterrupt(pinA));
   - Verschachtelte Interrupts (Nested Interrupts)
   - Aktivierung und Deaktivierung einzelner Interrupts
 
-### Beispiel: Interrupt-Priorität setzen (STM32)
-```cpp
-HAL_NVIC_SetPriority(EXTI0_IRQn, 1, 0);
-HAL_NVIC_EnableIRQ(EXTI0_IRQn);
-```
-- `EXTI0_IRQn` = Interrupt-Nummer
-- `1` = Prioritätslevel (0 = höchste Priorität)
-- `0` = Subpriorität (für gleiche Prioritätsstufen)
 
 ## Codebeispiel für einen externen Interrupt
 

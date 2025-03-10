@@ -227,6 +227,10 @@ Inhaltsverzeichnis
 
 
   document.addEventListener("DOMContentLoaded", function () {
+
+    window.history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+
     const md = window.markdownit({
       html: true,
       highlight: function (str, lang) {
@@ -279,7 +283,7 @@ Inhaltsverzeichnis
     }
 
     async function renderMarkdown() {
-      const markdownContent = await loadMarkdownFile("/ITLernen/mds/MCU/Software/externeInterrupts.md");
+      const markdownContent = await loadMarkdownFile("/ITLernen/mds/MCU/Software/pwm.md");
       const result = md.render(markdownContent);
       document.getElementById("content").innerHTML = result;
       generateTOC();
@@ -344,9 +348,9 @@ Inhaltsverzeichnis
                 document.msFullscreenElement) {
           console.log('enter fullscreen');
           if (!iframeused) {
-          iframe.style="width: 100%; height: 100%; border: none;"
+            iframe.style="width: 100%; height: 100%; border: none;"
           } else {
-              iframe.style="filter: blur(5px); width: 100%; height: 100%; border: none;pointer-events: none"
+            iframe.style="filter: blur(5px); width: 100%; height: 100%; border: none;pointer-events: none"
           }
           iframeused = !iframeused;
           console.log(iframe.style);
@@ -361,7 +365,12 @@ Inhaltsverzeichnis
         // force to reload iframe once to prevent the iframe source didn't care about trying to resize the window
         // comment this line and you will see
         iframe = document.querySelector('#iframecontainer iframe');
-        iframe.src = iframe.src;
+        // Nur reloaden, wenn es wirklich nötig ist
+        if (document.fullscreenElement) {
+          iframe.src = iframe.src;
+        }
+
+
       }
 
     }
@@ -397,6 +406,8 @@ Inhaltsverzeichnis
   });
 
 
+
+
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@iframe-resizer/parent@5.3.3"></script>
@@ -405,8 +416,6 @@ Inhaltsverzeichnis
     license: 'GPLv3',
     waitForLoad: true,
   }, '#not');
-
-
 </script>
 
 </body>

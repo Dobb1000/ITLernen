@@ -164,7 +164,7 @@ Falls in der Aufgabenstellung explizit Overflow und Prescaler-Faktor gefragt sin
 
 
 ## **Hinweise:**
-- Variable(n) in der ISR sollten als `volatile deklariert` werden
+- Variable(n) in der ISR sollten als `volatile` deklariert werden
 - Der Overflow kann maximal **32 Bit** lang sein.
 - Der Prescaler-Faktor kann maximal **16 Bit** lang sein.
 - Es sollte der Prescaler so gering wie möglich gehalten werden und der 32-Bit-Overflow voll durchgezählt werden (Empfehlung von Straub).

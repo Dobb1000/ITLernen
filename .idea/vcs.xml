@@ -2,7 +2,6 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/tutorial/casino/slots/slot-game" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/tutorial/test/SignUP-SignIn-Form-with-connection-to-FIrebase" vcs="Git" />
   </component>
 </project>
