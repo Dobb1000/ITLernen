@@ -308,7 +308,7 @@ Inhaltsverzeichnis
     }
 
     async function renderMarkdown() {
-      const markdownContent = await loadMarkdownFile("/ITLernen/mds/MCU/Theorie/schaltnetze.md");
+      const markdownContent = await loadMarkdownFile("/ITLernen/mds/MCU/Theorie/Schaltnetze.md");
       const result = md.render(markdownContent);
       document.getElementById("content").innerHTML = result;
       generateTOC();
