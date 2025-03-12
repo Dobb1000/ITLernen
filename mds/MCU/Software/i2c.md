@@ -26,21 +26,50 @@ Die Kommunikation über I2C folgt einem bestimmten Muster:
 
 <img src="/ITLernen/tutorial/MCU/Software/img/bitstruktur_i2c_2.png">
 
-### Beispielcode in Arduino (I²C-Master sendet Daten an einen Slave)
+## **Codebeispiele**
+
+### **Codebeispiel: I²C-Master sendet Daten an einen Slave (Hex-Adresse 0x08)**
 
 ```cpp
 #include <Wire.h>
 
 void setup() {
     Wire.begin(); // Initialisiert I²C als Master
+    Serial.begin(9600);
 }
 
 void loop() {
-    Wire.beginTransmission(8); // Startet Übertragung zu Slave mit Adresse 8
-    Wire.write("Hallo, I²C!"); // Daten senden
-    Wire.endTransmission(); // Übertragung beenden
+    Wire.beginTransmission(0x08); // Startet Übertragung zu Slave mit Adresse 0x08
+    Wire.write("Hallo, I²C!");    // Daten senden
+    Wire.endTransmission();       // Übertragung beenden
+    Serial.println("Daten gesendet an 0x08");
     delay(1000);
 }
 ```
+
+
+
+### **Codebeispiel: I²C-Master empfängt Daten vom Slave (Hex-Adresse 0x08)**
+
+```cpp
+#include <Wire.h>
+
+void setup() {
+    Wire.begin(); // Initialisiert I²C als Master
+    Serial.begin(9600);
+}
+
+void loop() {
+    Wire.requestFrom(0x08, 6); // Anforderung von 6 Bytes vom Slave mit Adresse 0x08
+    Serial.print("Empfangene Daten: ");
+    while (Wire.available()) {
+        char c = Wire.read();
+        Serial.print(c);
+    }
+    Serial.println();
+    delay(1000);
+}
+```
+
 
 Dieser Code sendet jede Sekunde den String "Hallo, I²C!" an ein Gerät mit der Adresse `8` über das I²C-Protokoll.
