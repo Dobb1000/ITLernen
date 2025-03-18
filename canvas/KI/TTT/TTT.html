@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tic Tac Toe Minimax</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            font-size: 5vw;
+            color: #007bff;
+        }
+
+        #board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            width: 300px;
+            height: 300px;
+            margin: 10px 0;
+        }
+
+        .cell {
+            width: 90px;
+            height: 90px;
+            background-color: #fff;
+            font-size: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cell:hover {
+            background-color: #e9ecef;
+        }
+
+        button {
+            margin-top: 10px;
+            font-size: 1em;
+        }
+
+        #tree-container {
+            width: 100%;
+            max-width: 1000px;
+            height: 50vh;
+            margin-top: 10px;
+        }
+
+        #tree {
+            width: 100%;
+            height: 100%;
+        }
+
+        .node rect {
+            fill: #ffffff;
+            stroke: #007bff;
+            rx: 2;
+            ry: 2;
+        }
+
+        .node text {
+            pointer-events: none;
+        }
+
+        #main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        #left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @media (min-width: 900px) {
+            #main-container {
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: flex-start;
+            }
+
+            #tree-container {
+                height: 60vh;
+                max-width: 50%;
+            }
+        }
+        #legend {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 1em;
+            color: #000;
+            text-align: left;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+        }
+
+    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+
+<h1>Tic Tac Toe</h1>
+<div id="legend">
+    <div>❌ = Spieler</div>
+    <div>⭕ = KI</div>
+</div>
+
+<div id="main-container">
+    <div id="left">
+        <div id="board"></div>
+        <button class="btn btn-primary" onclick="resetGame()">Neustart</button>
+        <button id="nextButton" class="btn btn-success mt-2" onclick="aiTurn()" disabled>Weiter</button>
+    </div>
+    <div id="tree-container">
+        <svg id="tree" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet"></svg>
+    </div>
+</div>
+
+<script>
+    const boardEl = document.getElementById('board');
+    const treeSVG = d3.select("#tree");
+    const nextButton = document.getElementById('nextButton');
+    let board = ["", "", "", "", "", "", "", "", ""];
+    const human = "X";
+    const ai = "O";
+    let playerTurn = true;
+
+    function renderBoard() {
+        boardEl.innerHTML = "";
+        board.forEach((cell, idx) => {
+            const cellEl = document.createElement('div');
+            cellEl.className = "cell";
+            cellEl.innerText = cell;
+            cellEl.addEventListener('click', () => playerMove(idx));
+            boardEl.appendChild(cellEl);
+        });
+    }
+
+    function playerMove(idx) {
+        if (board[idx] === "" && !isGameOver(board) && playerTurn) {
+            board[idx] = human;
+            renderBoard();
+            drawTree();
+
+            playerTurn = false;
+            if (!isGameOver(board)) {
+                nextButton.disabled = false;
+            }
+        }
+    }
+
+
+    function aiTurn() {
+        if (!isGameOver(board)) {
+            const bestMove = minimax(board, 0, true);
+            board[bestMove.index] = ai;
+            renderBoard();
+            drawTree();
+            nextButton.disabled = true;
+            playerTurn = true;
+        }
+    }
+
+    function resetGame() {
+        board = ["", "", "", "", "", "", "", "", ""];
+        renderBoard();
+        drawTree();
+        nextButton.disabled = true;
+        playerTurn = true;
+    }
+
+    function isGameOver(b) {
+        return checkWinner(b, human) || checkWinner(b, ai) || b.every(cell => cell !== "");
+    }
+
+    function checkWinner(b, player) {
+        const wins = [
+            [0,1,2], [3,4,5], [6,7,8],
+            [0,3,6], [1,4,7], [2,5,8],
+            [0,4,8], [2,4,6]
+        ];
+        return wins.some(combo => combo.every(i => b[i] === player));
+    }
+
+    function minimax(newBoard, depth, isMaximizing) {
+        if (checkWinner(newBoard, ai)) return { score: 10 - depth };
+        if (checkWinner(newBoard, human)) return { score: depth - 10 };
+        if (newBoard.every(cell => cell !== "")) return { score: 0 };
+
+        let moves = [];
+
+        newBoard.forEach((cell, i) => {
+            if (cell === "") {
+                let move = {};
+                move.index = i;
+                newBoard[i] = isMaximizing ? ai : human;
+                let result = minimax(newBoard, depth + 1, !isMaximizing);
+                move.score = result.score;
+                newBoard[i] = "";
+                moves.push(move);
+            }
+        });
+
+        let bestMove;
+        if (isMaximizing) {
+            let bestScore = -Infinity;
+            moves.forEach(m => {
+                if (m.score > bestScore) {
+                    bestScore = m.score;
+                    bestMove = m;
+                }
+            });
+        } else {
+            let bestScore = Infinity;
+            moves.forEach(m => {
+                if (m.score < bestScore) {
+                    bestScore = m.score;
+                    bestMove = m;
+                }
+            });
+        }
+        return bestMove;
+    }
+
+    function buildTree(currentBoard, depth, isMaximizing) {
+        const node = {
+            board: [...currentBoard],
+            children: [],
+            score: null
+        };
+
+        if (checkWinner(currentBoard, ai)) node.score = 10 - depth;
+        else if (checkWinner(currentBoard, human)) node.score = depth - 10;
+        else if (currentBoard.every(c => c !== "")) node.score = 0;
+
+        if (depth > 3 || node.score !== null) {
+            return node;
+        }
+
+        currentBoard.forEach((cell, i) => {
+            if (cell === "") {
+                let newBoard = [...currentBoard];
+                newBoard[i] = isMaximizing ? ai : human;
+                node.children.push(buildTree(newBoard, depth + 1, !isMaximizing));
+            }
+        });
+
+        return node;
+    }
+
+    function getMaxDepth(node) {
+        if (!node.children || node.children.length === 0) return 0;
+        return 1 + Math.max(...node.children.map(getMaxDepth));
+    }
+
+    function getMaxBreadthPerLevel(root) {
+        let levels = {};
+        function traverse(node, depth) {
+            levels[depth] = (levels[depth] || 0) + 1;
+            if (node.children) node.children.forEach(child => traverse(child, depth + 1));
+        }
+        traverse(root, 0);
+        return Math.max(...Object.values(levels));
+    }
+
+    function drawTree() {
+        treeSVG.selectAll("*").remove();
+        const treeData = buildTree([...board], 0, true);
+
+        const root = d3.hierarchy(treeData, d => d.children);
+        const maxDepth = getMaxDepth(treeData);
+        const maxBreadth = getMaxBreadthPerLevel(treeData);
+
+        const treeWidth = 900;
+        const treeHeight = 100 + maxDepth * 100;
+        const treeLayout = d3.tree().size([treeWidth, treeHeight]);
+        treeLayout(root);
+
+        const g = treeSVG.append("g").attr("transform", "translate(50,50)");
+
+        g.selectAll("line")
+            .data(root.links())
+            .enter()
+            .append("line")
+            .attr("x1", d => d.source.x)
+            .attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x)
+            .attr("y2", d => d.target.y)
+            .attr("stroke", "#ccc");
+
+        const node = g.selectAll("g.node")
+            .data(root.descendants())
+            .enter()
+            .append("g")
+            .attr("class", "node")
+            .attr("transform", d => `translate(${d.x},${d.y})`);
+
+        // Dynamische Node-Größe:
+        const scaleFactor = Math.min(1.2, treeWidth / (maxBreadth * 100));
+
+        node.each(function(d) {
+            const mini = d3.select(this);
+            const scale = scaleFactor;
+
+            mini.append("text")
+                .attr("y", -35 * scale)
+                .attr("text-anchor", "middle")
+                .attr("fill", "#000")
+                .text(`${d.data.score !== null ? "Score:" + d.data.score : ""}`)
+                .attr("font-size", `${12 * scale}px`);
+
+            const size = 12 * scale;
+            for (let row = 0; row < 3; row++) {
+                for (let col = 0; col < 3; col++) {
+                    mini.append("rect")
+                        .attr("x", col * size - 18 * scale)
+                        .attr("y", row * size - 18 * scale)
+                        .attr("width", size)
+                        .attr("height", size)
+                        .attr("fill", "#fff")
+                        .attr("stroke", "#007bff");
+                    const symbol = d.data.board[row * 3 + col];
+                    if (symbol) {
+                        mini.append("text")
+                            .attr("x", col * size - 12 * scale)
+                            .attr("y", row * size - 10 * scale)
+                            .attr("text-anchor", "middle")
+                            .text(symbol)
+                            .attr("font-size", `${8 * scale}px`);
+                    }
+                }
+            }
+        });
+    }
+
+    renderBoard();
+    drawTree();
+</script>
+</body>
+</html>

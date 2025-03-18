@@ -155,57 +155,12 @@ Inhaltsverzeichnis
   <article id="content" class="markdown-body"></article>
 </main>
   <nav class="right-sidebar">
-    <div class="toc-title">Software</div>
+    <div class="toc-title">Logikgatter</div>
+    <ul id="sub-toc1" class="toc-list"><li class="toc-item h1"><a href="/ITLernen/tutorial/MCU/logikgatter.html">Grundlagen</a></li></ul>
+    <ul id="sub-toc2" class="toc-list"><li class="toc-item h1"><a href="/ITLernen/tutorial/MCU/schaltnetze.html">Schaltnetze</a></li></ul>
+    <ul id="sub-toc3" class="toc-list"><li class="toc-item h1"><a href="/ITLernen/tutorial/MCU/schaltwerke.html">Schaltwerke</a></li></ul>
 
-    <ul id="sub-toc1" class="toc-list">
-      <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/grundlagen.html">Grundlagen</a>
-      </li>
-    </ul>
-
-    <ul id="sub-toc2" class="toc-list">
-      <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/externeInterrupts.html">Externer Interrupt</a>
-      </li>
-    </ul>
-
-    <ul id="sub-toc3" class="toc-list">
-      <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/timer.html">Timer und Interrupts</a>
-      </li>
-    </ul>
-
-    <ul id="sub-toc4" class="toc-list">
-      <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/pwm.html">PWM</a>
-      </li>
-    </ul>
-
-    <ul id="sub-toc5" class="toc-list">
-      <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/dac.html">Digital-Analog-Wandlung</a>
-      </li>
-    </ul>
-
-    <ul id="sub-toc6" class="toc-list">
-      <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/uart.html">UART</a>
-      </li>
-    </ul>
-
-    <ul id="sub-toc7" class="toc-list">
-      <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/spi.html">SPI</a>
-      </li>
-    </ul>
-
-    <ul id="sub-toc8" class="toc-list">
-      <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/i2c.html">I2C</a>
-      </li>
-    </ul>
   </nav>
-
 </div>
 
 <!-- Footer -->
@@ -272,10 +227,6 @@ Inhaltsverzeichnis
 
 
   document.addEventListener("DOMContentLoaded", function () {
-
-    window.history.scrollRestoration = "manual";
-    window.scrollTo(0, 0);
-
     const md = window.markdownit({
       html: true,
       highlight: function (str, lang) {
@@ -328,7 +279,11 @@ Inhaltsverzeichnis
     }
 
     async function renderMarkdown() {
-      const markdownContent = await loadMarkdownFile("/ITLernen/mds/MCU/Software/pwm.md");
+      let path = window.location.pathname;
+
+// Extract just the filename
+      let filename = path.substring(path.lastIndexOf('/') + 1).replace('.html', '.md');
+      const markdownContent = await loadMarkdownFile(`/ITLernen/mds/KI/${filename}`);
       const result = md.render(markdownContent);
       document.getElementById("content").innerHTML = result;
       generateTOC();
@@ -336,87 +291,10 @@ Inhaltsverzeichnis
       renderMathInElement(document.getElementById("content"), {
         delimiters: [
           {left: "$$", right: "$$", display: true},  // Block-Formel
-          {left: "$", right: "$", display: false}   // Inline-Formel
+          {left: "$", right: "$", display: true}   // Inline-Formel
         ],
         throwOnError: false
       });
-
-
-
-
-      var button = document.querySelector('#iframecontainer .button');
-      button.addEventListener('click', fullscreen);
-      // when you are in fullscreen, ESC and F11 may not be trigger by keydown listener.
-      // so don't use it to detect exit fullscreen
-      document.addEventListener('keydown', function (e) {
-        console.log('key press' + e.keyCode);
-      });
-      // detect enter or exit fullscreen mode
-      document.addEventListener('webkitfullscreenchange', fullscreenChange);
-      document.addEventListener('mozfullscreenchange', fullscreenChange);
-      document.addEventListener('fullscreenchange', fullscreenChange);
-      document.addEventListener('MSFullscreenChange', fullscreenChange);
-
-      function fullscreen() {
-        // check if fullscreen mode is available
-        if (document.fullscreenEnabled ||
-                document.webkitFullscreenEnabled ||
-                document.mozFullScreenEnabled ||
-                document.msFullscreenEnabled) {
-
-          // which element will be fullscreen
-          var iframe = document.querySelector('#iframecontainer iframe');
-          // Do fullscreen
-          if (iframe.requestFullscreen) {
-            iframe.requestFullscreen();
-          } else if (iframe.webkitRequestFullscreen) {
-            iframe.webkitRequestFullscreen();
-          } else if (iframe.mozRequestFullScreen) {
-            iframe.mozRequestFullScreen();
-          } else if (iframe.msRequestFullscreen) {
-            iframe.msRequestFullscreen();
-          }
-        }
-        else {
-          document.querySelector('.error').innerHTML = 'Your browser is not supported';
-        }
-      }
-
-      var iframeused = false;
-
-      function fullscreenChange() {
-        var iframe = document.querySelector('#iframecontainer iframe');
-
-        if (document.fullscreenEnabled ||
-                document.webkitIsFullScreen ||
-                document.mozFullScreen ||
-                document.msFullscreenElement) {
-          console.log('enter fullscreen');
-          if (!iframeused) {
-            iframe.style="width: 100%; height: 100%; border: none;"
-          } else {
-            iframe.style="filter: blur(5px); width: 100%; height: 100%; border: none;pointer-events: none"
-          }
-          iframeused = !iframeused;
-          console.log(iframe.style);
-
-
-        }
-        else {
-          console.log('exit fullscreen');
-          iframe.style.pointerEvents = 'none'
-
-        }
-        // force to reload iframe once to prevent the iframe source didn't care about trying to resize the window
-        // comment this line and you will see
-        iframe = document.querySelector('#iframecontainer iframe');
-        // Nur reloaden, wenn es wirklich nötig ist
-        if (document.fullscreenElement) {
-          iframe.src = iframe.src;
-        }
-
-
-      }
 
     }
 
@@ -441,7 +319,14 @@ Inhaltsverzeichnis
 
 
 
-
+      if (window.location.hash) {
+        setTimeout(() => {
+          const target = document.querySelector(window.location.hash);
+          if (target) {
+            target.scrollIntoView({behavior: "smooth"});
+          }
+        }, 100);
+      }
     }
 
     renderMarkdown();
@@ -450,9 +335,18 @@ Inhaltsverzeichnis
 
   });
 
-
-
-
+  if (window.location.hash) {
+    setTimeout(() => {
+      try {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          target.scrollIntoView({behavior: "smooth"});
+        }
+      } catch (error) {
+        console.error("Error scrolling to target:", error);
+      }
+    }, 100);
+  }
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@iframe-resizer/parent@5.3.3"></script>

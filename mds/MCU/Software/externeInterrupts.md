@@ -22,6 +22,9 @@
 
 
 ### Interrupt setzen:
+
+<p style="color: red;">Hinweis: Vor dem hinzufügen des Interrupts setze den PinMode!!!<p>
+
 ```cpp
 attachInterrupt(digitalPinToInterrupt(pinA), funktionB, TRIGGER);
 ```

@@ -1,6 +1,10 @@
 
 # Architektur
 
+<img src="/ITLernen/tutorial/MCU/Software/img/nucleo_darstellung.png">
+
+Wir verwenden einen STM32 Nucleo-L152RE, ein Entwicklungsboard, das den STM32L152RE Mikrocontroller integriert. Dieser Mikrocontroller basiert auf einem ARM Cortex-M3 Prozessor, der eine 32-Bit RISC-Architektur nutzt. Der Cortex-M3 ist für energieeffiziente und leistungsfähige Anwendungen optimiert und arbeitet mit einer maximalen Frequenz von 32 MHz. Er verfügt über 512 KB Flash-Speicher und 80 KB SRAM, wodurch er sich ideal für Embedded- und IoT-Anwendungen eignet. Dank der Unterstützung von Arduino Uno V3 und ST Morpho Steckverbindern bietet das Board große Flexibilität bei der Prototypenentwicklung.
+
 ## Program Status Register (PSR)
 
 <img style="float: right;width: 60%" src="/ITLernen/tutorial/MCU/Theorie/img/PSR.svg">

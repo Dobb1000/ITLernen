@@ -155,57 +155,12 @@
     <article id="content" class="markdown-body"></article>
 </main>
     <nav class="right-sidebar">
-        <div class="toc-title">Software</div>
+        <div class="toc-title">Logikgatter</div>
+        <ul id="sub-toc1" class="toc-list"><li class="toc-item h1"><a href="/ITLernen/tutorial/MCU/logikgatter.html">Grundlagen</a></li></ul>
+        <ul id="sub-toc2" class="toc-list"><li class="toc-item h1"><a href="/ITLernen/tutorial/MCU/schaltnetze.html">Schaltnetze</a></li></ul>
+        <ul id="sub-toc3" class="toc-list"><li class="toc-item h1"><a href="/ITLernen/tutorial/MCU/schaltwerke.html">Schaltwerke</a></li></ul>
 
-        <ul id="sub-toc1" class="toc-list">
-            <li class="toc-item h1">
-                <a href="/ITLernen/tutorial/MCU/Software/grundlagen.html">Grundlagen</a>
-            </li>
-        </ul>
-
-        <ul id="sub-toc2" class="toc-list">
-            <li class="toc-item h1">
-                <a href="/ITLernen/tutorial/MCU/Software/externeInterrupts.html">Externer Interrupt</a>
-            </li>
-        </ul>
-
-        <ul id="sub-toc3" class="toc-list">
-            <li class="toc-item h1">
-                <a href="/ITLernen/tutorial/MCU/Software/timer.html">Timer und Interrupts</a>
-            </li>
-        </ul>
-
-        <ul id="sub-toc4" class="toc-list">
-            <li class="toc-item h1">
-                <a href="/ITLernen/tutorial/MCU/Software/pwm.html">PWM</a>
-            </li>
-        </ul>
-
-        <ul id="sub-toc5" class="toc-list">
-            <li class="toc-item h1">
-                <a href="/ITLernen/tutorial/MCU/Software/dac.html">Digital-Analog-Wandlung</a>
-            </li>
-        </ul>
-
-        <ul id="sub-toc6" class="toc-list">
-            <li class="toc-item h1">
-                <a href="/ITLernen/tutorial/MCU/Software/uart.html">UART</a>
-            </li>
-        </ul>
-
-        <ul id="sub-toc7" class="toc-list">
-            <li class="toc-item h1">
-                <a href="/ITLernen/tutorial/MCU/Software/spi.html">SPI</a>
-            </li>
-        </ul>
-
-        <ul id="sub-toc8" class="toc-list">
-            <li class="toc-item h1">
-                <a href="/ITLernen/tutorial/MCU/Software/i2c.html">I2C</a>
-            </li>
-        </ul>
     </nav>
-
 </div>
 
 <!-- Footer -->
@@ -328,7 +283,7 @@
         }
 
         async function renderMarkdown() {
-            const markdownContent = await loadMarkdownFile("/ITLernen/mds/MCU/Software/i2c.md");
+            const markdownContent = await loadMarkdownFile("/ITLernen/mds/MCU/uebungen/u1.md");
             const result = md.render(markdownContent);
             document.getElementById("content").innerHTML = result;
             generateTOC();
@@ -462,6 +417,29 @@
         waitForLoad: true,
     }, '#not');
 </script>
+
+<script>
+    let timechecked = false;
+
+     function checkTime() {
+        const correctTime = "23:59:47"; // Die auf der Matrix angezeigte Uhrzeit
+        const userTime = document.getElementById("timeInput").value.trim();
+        const resultElement = document.getElementById("result");
+        if (userTime !== "") {
+            if (userTime === correctTime && !timechecked) {
+                resultElement.textContent = "✅ Richtig, die auf dem Bild angezeigte Uhrzeit ist 23:59:47";
+                resultElement.style.color = "green";
+                timechecked = true;
+            } else {
+                resultElement.textContent = "❌ Falsch, die auf dem Bild angezeigte Uhrzeit ist 23:59:47";
+                resultElement.style.color = "red";
+                timechecked = true;
+
+            }
+        }
+    }
+</script>
+
 
 </body>
 </html>
