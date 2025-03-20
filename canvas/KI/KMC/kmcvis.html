@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>K-Means Clustering Demo – Schritt für Schritt</title>
+    <style>
+        body { text-align: center; font-family: sans-serif; }
+        canvas { border: 1px solid black; margin-top: 10px; }
+        button, input { margin: 10px; padding: 8px; }
+    </style>
+</head>
+<body>
+
+<p>Setze Punkte (durch einen klick auf die Fläche!), <br> führe die Schritte einzeln aus, und beobachte den Algorithmus!</p>
+
+<label>Anzahl Cluster (K): </label>
+<input type="number" id="kValue" value="3" min="1" max="10"><br>
+
+<label>Anzahl zufälliger Punkte: </label>
+<input type="number" id="numPoints" value="50" min="1" max="500">
+<button onclick="generateRandomPoints()">Generate Random Points</button><br>
+
+<button onclick="initializeCentroids()">1. Zentren zufällig setzen</button>
+<button onclick="assignClusters()">2. Abstände Berechnen & Punkte zu Zentren zuweisen</button>
+<button onclick="updateCentroids()">3. Zentren aktualisieren (Mittelwert)</button><br>
+
+<button onclick="reset()">Reset</button>
+
+<canvas id="canvas" width="600" height="400"></canvas>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let points = [];
+    let centroids = [];
+    let k = 3;
+    let drawLines = false; // Flag für Linien
+
+    canvas.addEventListener('click', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        points.push({ x, y, cluster: -1 });
+        draw();
+    });
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Linien zeichnen (wenn aktiviert)
+        if (drawLines) {
+            points.forEach(p => {
+                if (p.cluster !== -1) {
+                    const c = centroids[p.cluster];
+                    ctx.strokeStyle = 'gray';
+                    ctx.beginPath();
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(c.x, c.y);
+                    ctx.stroke();
+                }
+            });
+        }
+
+        // Zentren zeichnen
+        centroids.forEach((c, index) => {
+            ctx.fillStyle = 'red';
+            ctx.beginPath();
+            ctx.arc(c.x, c.y, 8, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillText(`C${index+1}`, c.x + 10, c.y);
+        });
+
+        // Punkte zeichnen
+        points.forEach(p => {
+            ctx.fillStyle = p.cluster === -1 ? 'black' : getColor(p.cluster);
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
+            ctx.fill();
+        });
+    }
+
+    function getColor(cluster) {
+        const colors = ['blue', 'green', 'orange', 'purple', 'cyan', 'magenta', 'yellow', 'brown', 'pink', 'gray'];
+        return colors[cluster % colors.length];
+    }
+
+    function generateRandomPoints() {
+        const num = parseInt(document.getElementById('numPoints').value);
+        for (let i = 0; i < num; i++) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            points.push({ x, y, cluster: -1 });
+        }
+        draw();
+    }
+
+    function initializeCentroids() {
+        k = parseInt(document.getElementById('kValue').value);
+        if (points.length < k) {
+            alert('Mehr Punkte als Cluster nötig!');
+            return;
+        }
+        centroids = [];
+        for (let i = 0; i < k; i++) {
+            const randPoint = points[Math.floor(Math.random() * points.length)];
+            centroids.push({ x: randPoint.x, y: randPoint.y });
+        }
+        drawLines = false;
+        draw();
+    }
+
+    function assignClusters() {
+        if (centroids.length !== k) {
+            alert('Bitte zuerst Zentren setzen!');
+            return;
+        }
+
+        points.forEach(p => {
+            let minDist = Infinity;
+            let assignedCluster = -1;
+            centroids.forEach((c, i) => {
+                const dist = (p.x - c.x) ** 2 + (p.y - c.y) ** 2;
+                if (dist < minDist) {
+                    minDist = dist;
+                    assignedCluster = i;
+                }
+            });
+            p.cluster = assignedCluster;
+        });
+
+        drawLines = true; // Linien aktivieren
+        draw();
+    }
+
+    function updateCentroids() {
+        if (centroids.length !== k) {
+            alert('Bitte zuerst Zentren setzen!');
+            return;
+        }
+
+        for (let i = 0; i < k; i++) {
+            const clusterPoints = points.filter(p => p.cluster === i);
+            if (clusterPoints.length > 0) {
+                const meanX = clusterPoints.reduce((sum, p) => sum + p.x, 0) / clusterPoints.length;
+                const meanY = clusterPoints.reduce((sum, p) => sum + p.y, 0) / clusterPoints.length;
+                centroids[i] = { x: meanX, y: meanY };
+            }
+        }
+        drawLines = false; // Linien nach Update deaktivieren
+        draw();
+    }
+
+    function reset() {
+        points = [];
+        centroids = [];
+        drawLines = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+</script>
+
+</body>
+</html>

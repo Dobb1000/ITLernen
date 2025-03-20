@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KNN Visualizer</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+        canvas {
+            border: 1px solid black;
+            margin-top: 20px;
+            cursor: crosshair;
+        }
+        #controls {
+            margin-top: 10px;
+        }
+        .color-button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            color: white;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+<p>Klicke auf das Canvas, um Punkte zu setzen oder klassifizieren zu lassen.<br/>
+    <strong>Shift+Klick</strong>: Punkt klassifizieren | <strong>Klick</strong>: Punkt setzen</p>
+
+<div id="controls">
+    <label for="k">k:</label>
+    <input type="number" id="k" value="3" min="1" max="10" />
+
+    <label for="distance">Distanz:</label>
+    <select id="distance">
+        <option value="euclidean">Euklidisch</option>
+        <option value="manhattan">Manhattan</option>
+    </select>
+
+    <label for="colors">Farbenanzahl:</label>
+    <select id="colors">
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+    </select>
+
+    <button onclick="reset()">Reset</button>
+    <button onclick="generateRandomClusters()">Zufällige Cluster generieren</button>
+</div>
+
+<p>Wähle eine Farbe zum Punktsetzen:</p>
+<div id="colorButtons"></div>
+
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const kInput = document.getElementById("k");
+    const distanceSelect = document.getElementById("distance");
+    const colorSelect = document.getElementById("colors");
+    const colorButtonsDiv = document.getElementById("colorButtons");
+
+    const availableColors = ['red', 'blue', 'green', 'orange', 'purple', 'cyan', 'magenta'];
+    let currentColors = 2;
+    let selectedColor = 'red';
+    let clusterCenters = {};
+
+    let points = [];
+
+    function setupColorButtons() {
+        colorButtonsDiv.innerHTML = '';
+        for (let i = 0; i < currentColors; i++) {
+            const btn = document.createElement('button');
+            btn.className = 'color-button';
+            btn.style.backgroundColor = availableColors[i];
+            btn.innerText = availableColors[i];
+            btn.onclick = () => {
+                selectedColor = availableColors[i];
+            };
+            colorButtonsDiv.appendChild(btn);
+        }
+    }
+
+    colorSelect.addEventListener('change', () => {
+        currentColors = parseInt(colorSelect.value);
+        setupColorButtons();
+        reset();
+    });
+
+    function drawPoints() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        points.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 8, 0, 2 * Math.PI);
+            ctx.fillStyle = p.label;
+            ctx.fill();
+            ctx.stroke();
+        });
+    }
+
+    function distance(p1, p2) {
+        if (distanceSelect.value === 'euclidean') {
+            return Math.sqrt((p1.x - p2.x) ** 2 + (p1.y - p2.y) ** 2);
+        } else {
+            return Math.abs(p1.x - p2.x) + Math.abs(p1.y - p2.y);
+        }
+    }
+
+    function knn(newPoint) {
+        let k = parseInt(kInput.value);
+        let distances = points.map(p => ({
+            point: p,
+            dist: distance(p, newPoint)
+        }));
+        distances.sort((a, b) => a.dist - b.dist);
+        let neighbors = distances.slice(0, k);
+
+        let votes = {};
+        availableColors.slice(0, currentColors).forEach(c => votes[c] = 0);
+
+        neighbors.forEach(n => votes[n.point.label]++);
+        let maxVote = -1;
+        let predictedLabel = null;
+        for (let color in votes) {
+            if (votes[color] > maxVote) {
+                maxVote = votes[color];
+                predictedLabel = color;
+            }
+        }
+        return predictedLabel;
+    }
+
+    canvas.addEventListener("click", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        if (e.shiftKey) {
+            const label = knn({ x, y });
+            points.push({ x, y, label });
+        } else {
+            points.push({ x, y, label: selectedColor });
+        }
+        drawPoints();
+    });
+
+    function reset() {
+        points = [];
+        clusterCenters = {};
+        setupColorButtons();
+        drawPoints();
+    }
+
+    // Generate Random Clusters
+    function generateRandomClusters() {
+        clusterCenters = {};
+        points = [];
+        for (let i = 0; i < currentColors; i++) {
+            const color = availableColors[i];
+            const centerX = Math.random() * 400 + 50;
+            const centerY = Math.random() * 400 + 50;
+            clusterCenters[color] = { x: centerX, y: centerY };
+            // Generate points around center
+            for (let j = 0; j < 30; j++) {
+                const offsetX = Math.random() * 50 - 25;
+                const offsetY = Math.random() * 50 - 25;
+                points.push({
+                    x: centerX + offsetX,
+                    y: centerY + offsetY,
+                    label: color
+                });
+            }
+        }
+        drawPoints();
+    }
+
+    // Initial
+    setupColorButtons();
+    drawPoints();
+</script>
+</body>
+</html>
