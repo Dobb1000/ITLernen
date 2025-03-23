@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>ITLernen - Markdown Renderer mit Navigation</title>
+
+    <!-- Favicons -->
+    <link href="/ITLernen/assets/img/favicon.png" rel="icon">
+    <link href="/ITLernen/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/ITLernen/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/ITLernen/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/ITLernen/assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="/ITLernen/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/ITLernen/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="/ITLernen/assets/css/main.css" rel="stylesheet">
+
+    <!-- GitHub Markdown CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown-light.min.css">
+
+    <!-- Highlight.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+
+    <style>
+        iframe {
+            width: 100%;
+            height: 37vh;
+            overflow: hidden;
+        }
+        @media (max-width: 700px) {
+            iframe {
+                width: 100%;
+                height: 72vh;
+            }
+        }
+
+
+
+        body {
+            font-family: "Roboto", sans-serif;
+            background: #fff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .dropdowns {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px; /* Falls nötig, um sie nicht zu weit auseinanderzuziehen */
+            margin: 0 auto; /* Zentriert den Container */
+            margin-bottom: 3%;
+        }
+        .dropdown {
+            position: relative; /* Wichtig für Dropdown-Funktionalität */
+        }
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: auto;
+            padding: 40px;
+        }
+        .sidebar {
+            flex: 0 0 250px;
+            padding-right: 20px;
+        }
+        .content-wrapper {
+            flex: 1;
+            max-width: 900px;
+        }
+        .right-sidebar {
+            flex: 0 0 250px;
+            padding-left: 20px;
+        }
+        .markdown-body {
+            max-width: 100%;
+        }
+        .sidebar nav, .right-sidebar nav {
+            font-size: 0.9rem;
+        }
+        .sidebar a, .right-sidebar a {
+            display: block;
+            color: #000;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+        .sidebar a:hover, .right-sidebar a:hover {
+            color: #007bff;
+        }
+        .toc-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .toc-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        .toc-item.h1 a {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .toc-item.h2 a {
+            font-size: 0.9rem;
+            padding-left: 10px;
+        }
+        .toc-item.h3 a {
+            font-size: 0.85rem;
+            padding-left: 20px;
+        }
+
+        body {
+            padding-top: 80px; /* Höhe des Headers anpassen */
+        }
+
+    </style>
+</head>
+
+<body class="index-page">
+<div id="header-container"></div>
+
+
+<div class="container">
+    <div class="card mx-auto shadow-lg p-4" style="max-width: 600px;">
+        <h2 class="mb-4">Mein Profil</h2>
+        <form id="profileForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">Benutzername</label>
+                <input type="text" class="form-control" id="name" required />
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-Mail-Adresse</label>
+                <input type="email" class="form-control" id="email" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Coins</label>
+                <input type="text" class="form-control" id="coins" disabled />
+            </div>
+            <div id="message" class="mb-3 text-success"></div>
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Speichern</button>
+                <button type="button" class="btn btn-danger" id="deleteAccount">Account löschen</button>
+                <button type="button" class="btn btn-secondary" id="logoutBtn">Ausloggen</button>
+
+
+            </div>
+        </form>
+    </div>
+</div>
+<script type="module" src="/ITLernen/homepage.js"></script>
+<script src="/ITLernen/assets/js/loadheader.js"></script>
+<script src="/ITLernen/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script type="module" src="./profil.js"></script>
+</body>
+</html>

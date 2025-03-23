@@ -4,6 +4,9 @@
  import{getFirestore, setDoc, doc} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js"
  import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 
+
+
+
  const firebaseConfig = {
      apiKey: "AIzaSyCnasC7RgdNyyQusYASd93bBgi1B6_P0rs",
      authDomain: "itlernen-a0aa0.firebaseapp.com",
@@ -29,8 +32,10 @@
     event.preventDefault();
     const email=document.getElementById('email').value;
     const password=document.getElementById('password').value;
+    const name = document.getElementById('name').value;
 
-    const auth=getAuth();
+
+     const auth=getAuth();
     const db=getFirestore();
 
     createUserWithEmailAndPassword(auth, email, password)
@@ -38,6 +43,7 @@
         const user=userCredential.user;
         const userData={
             email: email,
+            name: name,
             coins: 0
         };
         localStorage.setItem('loggedInUserId', user.uid);
@@ -115,6 +121,7 @@
                  const userRef = doc(db, "users", user.uid);
                  await setDoc(userRef, {
                      email: user.email,
+                     name: user.displayName,
                      coins: 0
                  }, { merge: true });
 

@@ -30,6 +30,8 @@ onAuthStateChanged(auth, (user)=>{
                     const userData=docSnap.data();
                     document.getElementById('coinsshow-text').innerText=userData.coins + " Chips";
                     coins = userData.coins;
+                    document.getElementById("loginbtn").href = "/ITLernen/tutorial/login/profil.html";
+                    document.getElementById("loginbtn").innerText = "Profil";
                 }
                 else{
                     console.log("no document found matching id")
@@ -44,6 +46,8 @@ onAuthStateChanged(auth, (user)=>{
         document.getElementById("gamble_dropdown").style.display = "none";
         // display none importnat
         document.getElementById("coinsshow").style.setProperty("display", "none", "important");
+
+
 
     }
 })
