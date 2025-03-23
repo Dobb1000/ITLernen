@@ -1,0 +1,13 @@
+{
+  "database": "./groupby_example.db",
+  "markdown": "./description.md",
+  "query": "SELECT category, SUM(amount) AS total_amount FROM sales GROUP BY category;",
+  "columns": [
+    "category",
+    "total_amount"
+  ],
+  "values": [
+    ["Electronics", 2300],
+    ["Furniture", 295]
+  ]
+}

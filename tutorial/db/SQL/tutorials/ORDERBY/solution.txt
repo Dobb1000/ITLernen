@@ -1,0 +1,18 @@
+{
+  "database": "./orderby_example.db",
+  "markdown": "./description.md",
+  "query": "SELECT * FROM books ORDER BY title ASC;",
+  "columns": [
+    "id",
+    "title",
+    "author",
+    "year"
+  ],
+  "values": [
+    [3, "1984", "George Orwell", 1949],
+    [5, "Brave New World", "Aldous Huxley", 1932],
+    [4, "Pride and Prejudice", "Jane Austen", 1813],
+    [1, "The Catcher in the Rye", "J.D. Salinger", 1951],
+    [2, "To Kill a Mockingbird", "Harper Lee", 1960]
+  ]
+}

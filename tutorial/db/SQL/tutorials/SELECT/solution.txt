@@ -1,0 +1,14 @@
+{
+  "database": "./select_db.db",
+  "markdown": "./description.md",
+  "query": "SELECT id, age FROM students;",
+  "columns": [
+    "id",
+    "age"
+  ],
+  "values": [
+    [1, 20],
+    [2, 22],
+    [3, 23]
+  ]
+}

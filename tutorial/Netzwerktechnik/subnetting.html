@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>ITLernen - Markdown Renderer mit Navigation</title>
+
+  <!-- Favicons -->
+  <link href="/ITLernen/assets/img/favicon.png" rel="icon">
+  <link href="/ITLernen/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/ITLernen/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/ITLernen/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/ITLernen/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/ITLernen/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/ITLernen/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="/ITLernen/assets/css/main.css" rel="stylesheet">
+
+  <!-- GitHub Markdown CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown-light.min.css">
+
+  <!-- Highlight.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+
+  <!-- KaTeX CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
+
+  <style>
+    iframe {
+      width: 100%;
+      height: 37vh;
+      overflow: hidden;
+    }
+    @media (max-width: 700px) {
+      iframe {
+        width: 100%;
+        height: 72vh;
+      }
+    }
+
+
+
+    body {
+      font-family: "Roboto", sans-serif;
+      background: #fff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    .dropdowns {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px; /* Falls nötig, um sie nicht zu weit auseinanderzuziehen */
+      margin: 0 auto; /* Zentriert den Container */
+      margin-bottom: 3%;
+    }
+    .dropdown {
+      position: relative; /* Wichtig für Dropdown-Funktionalität */
+    }
+    .container {
+      display: flex;
+      max-width: 1400px;
+      margin: auto;
+      padding: 40px;
+    }
+    .sidebar {
+      flex: 0 0 250px;
+      padding-right: 20px;
+    }
+    .content-wrapper {
+      flex: 1;
+      max-width: 900px;
+    }
+    .right-sidebar {
+      flex: 0 0 250px;
+      padding-left: 20px;
+    }
+    .markdown-body {
+      max-width: 100%;
+    }
+    .sidebar nav, .right-sidebar nav {
+      font-size: 0.9rem;
+    }
+    .sidebar a, .right-sidebar a {
+      display: block;
+      color: #000;
+      text-decoration: none;
+      padding: 5px 0;
+    }
+    .sidebar a:hover, .right-sidebar a:hover {
+      color: #007bff;
+    }
+    .toc-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+    .toc-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .toc-item.h1 a {
+      font-size: 1rem;
+      font-weight: bold;
+    }
+    .toc-item.h2 a {
+      font-size: 0.9rem;
+      padding-left: 10px;
+    }
+    .toc-item.h3 a {
+      font-size: 0.85rem;
+      padding-left: 20px;
+    }
+
+    body {
+      padding-top: 80px; /* Höhe des Headers anpassen */
+    }
+
+  </style>
+</head>
+
+<body class="index-page">
+<div id="header-container"></div>
+
+<div class="container">
+  <nav class="sidebar">
+    <div class="toc-title"></div>
+    <ul id="toc" class="toc-list"></ul>
+  </nav>
+  <div class="dropdowns" style="display: none;" id="dropdown">
+    <div class="dropdown">
+      <button style="background: var(--accent-color);  font-weight: 500; color: var(--contrast-color);" class="btn btn-getstarted dropdown-toggle" type="button" id="dropdownMenuButtonLeft"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+      >
+        Inhaltsverzeichnis
+      </button>
+      <div class="dropdown-menu" id="dropdown-menu" aria-labelledby="dropdownMenuButtonLeft" style="background-color: #cce5ff;">
+        <a class="dropdown-item" href="#" style="color: #000;">Action</a>
+        <a class="dropdown-item" href="#" style="color: #000;">Another action</a>
+        <a class="dropdown-item" href="#" style="color: #000;">Something else here</a>
+      </div>
+    </div>
+  </div><main class="content-wrapper">
+  <article id="content" class="markdown-body"></article>
+</main>
+  <nav class="right-sidebar">
+    <div class="toc-title">Logikgatter</div>
+    <ul id="sub-toc1" class="toc-list"><li class="toc-item h1"><a href="/ITLernen/tutorial/MCU/logikgatter.html">Grundlagen</a></li></ul>
+    <ul id="sub-toc2" class="toc-list"><li class="toc-item h1"><a href="/ITLernen/tutorial/MCU/schaltnetze.html">Schaltnetze</a></li></ul>
+    <ul id="sub-toc3" class="toc-list"><li class="toc-item h1"><a href="/ITLernen/tutorial/MCU/schaltwerke.html">Schaltwerke</a></li></ul>
+
+  </nav>
+</div>
+
+<!-- Footer -->
+<footer id="footer" class="footer">
+  <div class="container copyright text-center mt-4">
+    <p>© <span>Copyright</span> <strong class="px-1 sitename">ITLernen</strong> <span>All Rights Reserved</span></p>
+    <div class="credits">
+      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/ITLernen/assets/js/loadheader.js"></script>
+<a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<!-- Bootstrap JS -->
+<script src="/ITLernen/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- Markdown-it, Highlight.js und KaTeX -->
+<script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script>
+
+<script>
+  /**
+   * Mobile nav toggle
+   */
+  const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+
+  function mobileNavToogle() {
+    document.querySelector('body').classList.toggle('mobile-nav-active');
+    mobileNavToggleBtn.classList.toggle('bi-list');
+    mobileNavToggleBtn.classList.toggle('bi-x');
+  }
+  if (mobileNavToggleBtn) {
+    mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
+  }
+
+  /**
+   * Hide mobile nav on same-page/hash links
+   */
+  document.querySelectorAll('#navmenu a').forEach(navmenu => {
+    navmenu.addEventListener('click', () => {
+      if (document.querySelector('.mobile-nav-active')) {
+        mobileNavToogle();
+      }
+    });
+
+  });
+
+  /**
+   * Toggle mobile nav dropdowns
+   */
+  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
+    navmenu.addEventListener('click', function(e) {
+      e.preventDefault();
+      this.parentNode.classList.toggle('active');
+      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
+      e.stopImmediatePropagation();
+    });
+  });
+
+
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const md = window.markdownit({
+      html: true,
+      highlight: function (str, lang) {
+        if (lang && hljs.getLanguage(lang)) {
+          try {
+            return '<pre class="hljs"><code>' + hljs.highlight(str, { language: lang }).value + '</code></pre>';
+          } catch (__) { }
+        }
+        return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
+      }
+    });
+
+    async function loadMarkdownFile(url) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.text();
+      } catch (error) {
+        console.error("Fehler beim Laden der Markdown-Datei:", error);
+        return "Fehler beim Laden der Datei.";
+      }
+    }
+    function generateDropdownTOC() {
+      const dropdownMenu = document.getElementById("dropdown-menu");
+      dropdownMenu.innerHTML = ""; // Vorherige Inhalte entfernen
+
+      document.querySelectorAll(".markdown-body h1, .markdown-body h2").forEach(header => {
+        const id = header.textContent.replace(/\s+/g, '-').toLowerCase();
+        header.id = id;
+        const link = document.createElement("a");
+        link.href = "#" + id;
+        link.textContent = header.textContent;
+        link.classList.add("dropdown-item");
+        link.style.color = "#000";
+        if (header.tagName.toLowerCase() === "h2") {
+          link.style.paddingLeft = "2em";
+        }
+
+        dropdownMenu.appendChild(link);
+      });
+
+      if (dropdownMenu.children.length > 0) {
+        document.getElementById("dropdown").style.display = "flex"; // Dropdown anzeigen, wenn es Inhalte gibt
+      }
+
+      document.getElementById("dropdown").style.display = "none";
+
+    }
+
+    async function renderMarkdown() {
+      let path = window.location.pathname;
+
+// Extract just the filename
+      let filename = path.substring(path.lastIndexOf('/') + 1).replace('.html', '.md');
+      const markdownContent = await loadMarkdownFile(`/ITLernen/mds/Netzwerktechnik/${filename}`);
+      const result = md.render(markdownContent);
+      document.getElementById("content").innerHTML = result;
+      generateTOC();
+      generateDropdownTOC(); // TOC für das Dropdown generieren
+      renderMathInElement(document.getElementById("content"), {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},  // Block-Formel
+          {left: "$", right: "$", display: false}   // Inline-Formel
+        ],
+        throwOnError: false
+      });
+
+    }
+
+    function generateTOC() {
+      const toc = document.getElementById("toc");
+      toc.innerHTML = "";
+
+      document.querySelectorAll(".markdown-body h1, .markdown-body h2, .markdown-body h3").forEach(header => {
+        const id = header.textContent.replace(/\s+/g, '-').toLowerCase();
+        header.id = id;
+        const link = document.createElement("a");
+        link.href = "#" + id;
+        link.textContent = header.textContent;
+        const listItem = document.createElement("li");
+        listItem.classList.add("toc-item", header.tagName.toLowerCase());
+        listItem.appendChild(link);
+        toc.appendChild(listItem);
+
+
+      });
+
+
+
+
+      if (window.location.hash) {
+        setTimeout(() => {
+          const target = document.querySelector(window.location.hash);
+          if (target) {
+            target.scrollIntoView({behavior: "smooth"});
+          }
+        }, 100);
+      }
+    }
+
+    renderMarkdown();
+
+
+
+  });
+
+  if (window.location.hash) {
+    setTimeout(() => {
+      try {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          target.scrollIntoView({behavior: "smooth"});
+        }
+      } catch (error) {
+        console.error("Error scrolling to target:", error);
+      }
+    }, 100);
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/@iframe-resizer/parent@5.3.3"></script>
+<script>
+  iframeResize({
+    license: 'GPLv3',
+    waitForLoad: true,
+  }, '#not');
+</script>
+
+</body>
+</html>

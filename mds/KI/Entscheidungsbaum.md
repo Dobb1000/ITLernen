@@ -16,6 +16,7 @@ Ein Entscheidungsbaum besteht aus Knoten:
 
 <br>
 <br><br><br><br><br><br><br><br>
+<br><br><br><br>
 
 Aufgabe: Erstelle ein Baumdiagramm, das zeigt, ob der Affe beißt oder nicht.
 

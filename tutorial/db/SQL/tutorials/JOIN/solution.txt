@@ -1,0 +1,16 @@
+{
+  "database": "./join_example.db",
+  "markdown": "./description.md",
+  "query": "SELECT customers.name, orders.product FROM customers INNER JOIN orders ON customers.id = orders.customer_id;",
+  "columns": [
+    "name",
+    "product"
+  ],
+  "values": [
+    ["Alice", "Laptop"],
+    ["Alice", "Mouse"],
+    ["Bob", "Desk"],
+    ["Bob", "Monitor"],
+    ["Charlie", "Chair"]
+  ]
+}

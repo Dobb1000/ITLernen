@@ -48,6 +48,47 @@ $
 ### Maximum-Distanz (Chebyshev-Distanz)
 $d(P, Q) = \max \left( \left| p_i - q_i \right| \right)$
 
+#### **Formel:**
+
+Für zwei Punkte
+- **$P₁ = (x₁, y₁)$**
+- **$P₂ = (x₂, y₂)$**
+
+ist die **Chebyshev-Distanz:**
+
+$
+D = \max\left( |x₁ - x₂| , |y₁ - y₂| \right)
+$
+
+Also:  
+➡️ Berechne den **Unterschied in x** und **Unterschied in y** (als Betrag),  
+➡️ und nimm davon den **größeren Wert**!
+
+---
+
+#### **Beispiel:**
+
+Punkt A = (3, 5)  
+Punkt B = (7, 2)
+
+Rechnung:
+
+$
+|3 - 7| = 4
+$
+
+$
+|5 - 2| = 3
+$
+
+Jetzt:  
+$
+D = \max(4, 3) = 4
+$
+
+**Die Chebyshev-Distanz ist 4.**
+
+
 
 ## Weitere wichtige Punkte
 

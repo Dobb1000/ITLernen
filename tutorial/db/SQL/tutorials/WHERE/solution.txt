@@ -1,0 +1,16 @@
+{
+  "database": "./where_example.db",
+  "markdown": "./description.md",
+  "query": "SELECT * FROM products WHERE category = 'Electronics';",
+  "columns": [
+    "id",
+    "name",
+    "category",
+    "price"
+  ],
+  "values": [
+    [1, "Laptop", "Electronics", 1000],
+    [2, "Smartphone", "Electronics", 800],
+    [5, "Headphones", "Electronics", 200]
+  ]
+}
