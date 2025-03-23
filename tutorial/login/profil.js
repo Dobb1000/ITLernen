@@ -90,6 +90,9 @@ const logoutBtn = document.getElementById('logoutBtn');
 logoutBtn.addEventListener('click', async () => {
     try {
         await signOut(auth);
+        localStorage.clear();
+
+
         window.location.href = "./login.html"; // Oder wohin du nach dem Logout weiterleiten willst
     } catch (error) {
         console.error("Fehler beim Ausloggen:", error);
