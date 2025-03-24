@@ -19,7 +19,7 @@ Das **OSI-Modell (Open Systems Interconnection Model)** unterteilt die Kommunika
 ---
 
 ## **Schichten im Detail**
-<img src="/ITLernen/tutorial/Netzwerktechnik/Img/bitpumpgun.svg" style="width: 15%; float: right" />
+<img src="/ITLernen/tutorial/Netzwerktechnik/img/bitpumpgun.svg" style="width: 15%; float: right" />
 
 ### **1. Bitübertragungsschicht (Physical Layer)**
 
