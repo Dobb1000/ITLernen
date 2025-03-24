@@ -204,4 +204,55 @@ enum Richtung {
   int incomingByte = Serial.read();
   ```
 
+## **printf & snprintf**
+
+### 🖨️ 1. `printf`
+**Syntax:**
+```c
+printf("Format-String", argument1, argument2, ...);
+```
+
+#### **Wichtige Format-Specifier:**
+
+| Specifier | Bedeutung                         | Beispiel-Ausgabe         |
+|---------|----------------------------------|--------------------------|
+| `%d`    | Ganzzahl (int)                    | `printf("%d", 42);` → `42` |
+| `%f`    | Fließkommazahl (float/double)     | `printf("%.2f", 3.1415);` → `3.14` |
+| `%c`    | Einzelnes Zeichen (char)          | `printf("%c", 'A');` → `A` |
+| `%s`    | String (char-Array)               | `printf("%s", "Hallo");` → `Hallo` |
+| `%x`    | Hexadezimalzahl (klein)           | `printf("%x", 255);` → `ff` |
+| `%X`    | Hexadezimalzahl (groß)            | `printf("%X", 255);` → `FF` |
+| `%%`    | Prozentzeichen                    | `printf("%%");` → `%` |
+
+#### **Formatierungsmöglichkeiten:**
+
+| Beispiel                  | Bedeutung                                         |
+|--------------------------|---------------------------------------------------|
+| `%5d`                    | Mindestens 5 Stellen, rechtsbündig                 |
+| `%-5d`                   | Mindestens 5 Stellen, linksbündig                  |
+| `%05d`                   | Auffüllen mit Nullen                              |
+| `%.2f`                   | 2 Nachkommastellen bei float/double                |
+| `%10s`                   | String mindestens 10 Zeichen breit                 |
+
+---
+
+### 📝 2. `snprintf`
+**Syntax:**
+```c
+snprintf(char *zielString, size_t size, "Format-String", argument1, argument2, ...);
+```
+
+#### **Funktion:**
+- Formatiert die Ausgabe **in einen String**, maximal bis zu `size - 1` Zeichen (plus Nullterminator).
+- **Verhindert Buffer Overflow!**
+
+**Beispiel:**
+```c
+char buffer[50];
+snprintf(buffer, sizeof(buffer), "Name: %s, Alter: %d", "Anna", 25);
+// buffer enthält: "Name: Anna, Alter: 25"
+```
+
+**Vorteil gegenüber `sprintf`:**
+✅ Sicherheit – schreibt nie mehr als `size` Zeichen!
 

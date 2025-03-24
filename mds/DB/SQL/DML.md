@@ -187,6 +187,8 @@ INNER JOIN orders ON users.id = orders.user_id;
 
 ### JOIN ohne `JOIN`-Befehl (klassische Schreibweise)
 
+
+
 Statt `INNER JOIN` kann man Tabellen auch über die `FROM`- und `WHERE`-Klausel verknüpfen.
 
 **Syntax:**
@@ -205,6 +207,11 @@ FROM users, orders
 WHERE users.id = orders.user_id;
 ```
 
+<img src="https://cdn.7tv.app/emote/01F01APK500007E4VV006YKSMR/4x.avif">
+
+
 **Hinweis:**  
 Diese Schreibweise ist funktional identisch zu `INNER JOIN`, jedoch oft unübersichtlicher. Man nennt sie auch **impliziten Join**. Besonders bei mehreren Tabellen ist die Verwendung von expliziten `JOIN`s lesbarer und klarer.
+
+
 

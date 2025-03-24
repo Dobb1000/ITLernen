@@ -28,6 +28,8 @@ CREATE TABLE users (
 
 ## ALTER TABLE
 
+<img src="https://cdn.7tv.app/emote/01JK13HTGS8R8KCEQ49BDH569E/4x.avif" style="width: 30%;">
+
 **Funktion:**  
 Tabelle ändern (z.B. Spalten hinzufügen/löschen).
 

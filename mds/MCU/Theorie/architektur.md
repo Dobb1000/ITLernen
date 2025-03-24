@@ -100,10 +100,6 @@ Hier ist dein Lernzettel zu **RISC & CISC – Architekturtypen von Prozessoren**
 - Moderne Prozessoren kombinieren oft beide Prinzipien, z. B. durch **Mikrocode** in CISC-Prozessoren, der Befehle in einfachere interne Operationen zerlegt.
 
 
-
-Möchtest du noch Ergänzungen oder Anpassungen? 😊
-
-
 ## Maschienenzyklus
 
 Ein **Maschinenzyklus** bezeichnet die grundlegenden Schritte, die eine CPU bei der Verarbeitung eines Befehls durchführt. Er besteht aus vier Hauptphasen:
@@ -119,6 +115,7 @@ Ein **Maschinenzyklus** bezeichnet die grundlegenden Schritte, die eine CPU bei 
 
 3. **Execute (Ausführen)** – Die CPU führt die Anweisung aus (z. B. eine Berechnung oder einen Speicherzugriff).
 
+<img src="https://cdn.7tv.app/emote/01G4ZTECKR0002P97QQ94BDSP4/4x.avif">
 
 ### **Pipelining**
 Ermöglicht parallele Verarbeitung durch simultanes Laden, Dekodieren und Ausführen von Befehlen.

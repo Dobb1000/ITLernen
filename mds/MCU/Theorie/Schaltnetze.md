@@ -21,10 +21,6 @@ Vergleicht zwei Zahlen mit drei möglichen Outputs: A = B, A < B und A > B.
 
 <iframe onload="resizeIframe(this)" src="/ITLernen/canvas/logikgatter/vergleicher.html" id="not"></iframe>
 
-## Vergleicher
-
-<iframe onload="resizeIframe(this)" src="/ITLernen/canvas/logikgatter/vergleicher.html" id="not"></iframe>
-
 ## Multiplexer (MUX)
 Schaltet je nach Steuersignal eines von mehreren Eingangssignalen auf den Ausgang.
 

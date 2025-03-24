@@ -97,7 +97,7 @@ fileInput.addEventListener("change", loadFromFile);
 function addClass() {
     const newClass = {
         id: entityes.length,
-        name: "Class" + (entityes.length + 1),
+        name: "entity" + (entityes.length + 1),
         x: 50 + (entityes.length * 20) % 700,
         y: 50 + (entityes.length * 20) % 400,
         attributes: [],
