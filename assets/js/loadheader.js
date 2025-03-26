@@ -1,5 +1,5 @@
 function loadHeader() {
-    fetch('/ITLernen/header.html')
+    fetch('/header.html')
         .then(response => response.text())
         .then(data => {
 

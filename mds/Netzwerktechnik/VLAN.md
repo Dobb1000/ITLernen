@@ -27,7 +27,7 @@ Eine Firma will, dass die PCs von Verwaltung und Produktion getrennt sind → Ve
 
 ## 🔹 **Wichtige Begriffe & Konzepte**
 
-<img src="/ITLernen/tutorial/Netzwerktechnik/img/VLANTRUNK.svg" />
+<img src="/tutorial/Netzwerktechnik/img/VLANTRUNK.svg" />
 
 ### **Access Port**
 - Wird für **Endgeräte** (PCs, Drucker) verwendet.
@@ -45,7 +45,7 @@ Eine Firma will, dass die PCs von Verwaltung und Produktion getrennt sind → Ve
 
 ### **VLAN Tagging (IEEE 802.1Q Standard)**
 
-<img src="/ITLernen/tutorial/Netzwerktechnik/img/vlantag.gif" />
+<img src="/tutorial/Netzwerktechnik/img/vlantag.gif" />
 
 
 - **VLAN-Tag = Zusatzinfo** im Datenrahmen.

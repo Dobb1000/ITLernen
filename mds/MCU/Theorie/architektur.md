@@ -1,13 +1,13 @@
 
 # Architektur
 
-<img src="/ITLernen/tutorial/MCU/Software/img/nucleo_darstellung.png">
+<img src="/tutorial/MCU/Software/img/nucleo_darstellung.png">
 
 Wir verwenden einen STM32 Nucleo-L152RE, ein Entwicklungsboard, das den STM32L152RE Mikrocontroller integriert. Dieser Mikrocontroller basiert auf einem ARM Cortex-M3 Prozessor, der eine 32-Bit RISC-Architektur nutzt. Der Cortex-M3 ist für energieeffiziente und leistungsfähige Anwendungen optimiert und arbeitet mit einer maximalen Frequenz von 32 MHz. Er verfügt über 512 KB Flash-Speicher und 80 KB SRAM, wodurch er sich ideal für Embedded- und IoT-Anwendungen eignet. Dank der Unterstützung von Arduino Uno V3 und ST Morpho Steckverbindern bietet das Board große Flexibilität bei der Prototypenentwicklung.
 
 ## Program Status Register (PSR)
 
-<img style="float: right;width: 60%" src="/ITLernen/tutorial/MCU/Theorie/img/PSR.svg">
+<img style="float: right;width: 60%" src="/tutorial/MCU/Theorie/img/PSR.svg">
 
 Das PSR enthält mehrere Flags, die den Zustand einer Rechenoperation widerspiegeln:
 - **N (Negative)**: Setzt sich, wenn das Ergebnis negativ ist.
@@ -19,7 +19,7 @@ Das PSR enthält mehrere Flags, die den Zustand einer Rechenoperation widerspieg
 
 Der Program Counter (PC) ist ein Register in der CPU, das die Adresse der nächsten auszuführenden Instruktion speichert. Er spielt eine zentrale Rolle bei der sequentiellen Befehlsverarbeitung in einem Computer.
 ## Bus-System
-<img style="float: right;width: 60%" src="/ITLernen/tutorial/MCU/Theorie/img/bussystem.png">
+<img style="float: right;width: 60%" src="/tutorial/MCU/Theorie/img/bussystem.png">
 
 - **Datenbus**: Überträgt Daten zwischen Komponenten.
 - **Steuerbus**: Überträgt Steuersignale (z. B. Lese-/Schreibbefehle).
@@ -47,7 +47,7 @@ Die **Harvard-Architektur** trennt Speicher und Busse für Daten und Programme:
 
 ### **Vor-/Nachteile**
 
-<img style="float: right;width: 60%" src="/ITLernen/tutorial/MCU/Theorie/img/Neumannvsharvard.svg">
+<img style="float: right;width: 60%" src="/tutorial/MCU/Theorie/img/Neumannvsharvard.svg">
 
 **Von-Neumann-Architektur**:
 - (+) Einfacherer Aufbau.
@@ -105,7 +105,7 @@ Hier ist dein Lernzettel zu **RISC & CISC – Architekturtypen von Prozessoren**
 Ein **Maschinenzyklus** bezeichnet die grundlegenden Schritte, die eine CPU bei der Verarbeitung eines Befehls durchführt. Er besteht aus vier Hauptphasen:
 <br>
 <br>
-<img style="width: 60%; float: left; position: relative; left: 50%; transform: translateX(-50%);" src="/ITLernen/tutorial/MCU/Theorie/img/MaschienenZyklus.svg">
+<img style="width: 60%; float: left; position: relative; left: 50%; transform: translateX(-50%);" src="/tutorial/MCU/Theorie/img/MaschienenZyklus.svg">
 <br>
 <br>
 <br>
@@ -121,7 +121,7 @@ Ein **Maschinenzyklus** bezeichnet die grundlegenden Schritte, die eine CPU bei 
 Ermöglicht parallele Verarbeitung durch simultanes Laden, Dekodieren und Ausführen von Befehlen.
 <br>
 <br>
-<img style="width: 60%; float: left; position: relative; left: 50%; transform: translateX(-50%);" src="/ITLernen/tutorial/MCU/Theorie/img/Pipelining.svg">
+<img style="width: 60%; float: left; position: relative; left: 50%; transform: translateX(-50%);" src="/tutorial/MCU/Theorie/img/Pipelining.svg">
 <br>
 <br>
 <br>

@@ -37,7 +37,7 @@
 
 ### Beispiel Wireshark:
 
-<img src="/ITLernen/tutorial/Netzwerktechnik/img/wireshark_tcp_handshake.png" />
+<img src="/tutorial/Netzwerktechnik/img/wireshark_tcp_handshake.png" />
 
 
 

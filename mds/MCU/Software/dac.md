@@ -12,7 +12,7 @@ Ein AD-Wandler (Analog-Digital-Wandler) wandelt analoge Signale in digitale Wert
 
 ### **Berechnungsformeln:**
 
-<img src="/ITLernen/tutorial/MCU/Software/img/adc.png">
+<img src="/tutorial/MCU/Software/img/adc.png">
 
 
 1. **Anzahl der Stufen:**
@@ -46,7 +46,7 @@ Ein DA-Wandler (Digital-Analog-Wandler) erzeugt aus digitalen Eingangswerten ana
 
 ### **Berechnungsformeln:**
 
-<img src="/ITLernen/tutorial/MCU/Software/img/dac.png">
+<img src="/tutorial/MCU/Software/img/dac.png">
 
 
 1. **Anzahl der Stufen:**

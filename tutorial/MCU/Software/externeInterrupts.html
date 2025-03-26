@@ -7,8 +7,8 @@
   <title>ITLernen - Markdown Renderer mit Navigation</title>
 
   <!-- Favicons -->
-  <link href="/ITLernen/assets/img/favicon.png" rel="icon">
-  <link href="/ITLernen/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/assets/img/favicon.png" rel="icon">
+  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -16,14 +16,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="/ITLernen/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/ITLernen/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/ITLernen/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/ITLernen/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/ITLernen/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="/ITLernen/assets/css/main.css" rel="stylesheet">
+  <link href="/assets/css/main.css" rel="stylesheet">
 
   <!-- GitHub Markdown CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown-light.min.css">
@@ -159,49 +159,49 @@ Inhaltsverzeichnis
 
     <ul id="sub-toc1" class="toc-list">
       <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/grundlagen.html">Grundlagen</a>
+        <a href="/tutorial/MCU/Software/grundlagen.html">Grundlagen</a>
       </li>
     </ul>
 
     <ul id="sub-toc2" class="toc-list">
       <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/externeInterrupts.html">Externer Interrupt</a>
+        <a href="/tutorial/MCU/Software/externeInterrupts.html">Externer Interrupt</a>
       </li>
     </ul>
 
     <ul id="sub-toc3" class="toc-list">
       <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/timer.html">Timer und Interrupts</a>
+        <a href="/tutorial/MCU/Software/timer.html">Timer und Interrupts</a>
       </li>
     </ul>
 
     <ul id="sub-toc4" class="toc-list">
       <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/pwm.html">PWM</a>
+        <a href="/tutorial/MCU/Software/pwm.html">PWM</a>
       </li>
     </ul>
 
     <ul id="sub-toc5" class="toc-list">
       <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/dac.html">Digital-Analog-Wandlung</a>
+        <a href="/tutorial/MCU/Software/dac.html">Digital-Analog-Wandlung</a>
       </li>
     </ul>
 
     <ul id="sub-toc6" class="toc-list">
       <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/uart.html">UART</a>
+        <a href="/tutorial/MCU/Software/uart.html">UART</a>
       </li>
     </ul>
 
     <ul id="sub-toc7" class="toc-list">
       <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/spi.html">SPI</a>
+        <a href="/tutorial/MCU/Software/spi.html">SPI</a>
       </li>
     </ul>
 
     <ul id="sub-toc8" class="toc-list">
       <li class="toc-item h1">
-        <a href="/ITLernen/tutorial/MCU/Software/i2c.html">I2C</a>
+        <a href="/tutorial/MCU/Software/i2c.html">I2C</a>
       </li>
     </ul>
   </nav>
@@ -218,12 +218,12 @@ Inhaltsverzeichnis
   </div>
 </footer>
 
-<script type="module" src="/ITLernen/homepage.js"></script>
-<script src="/ITLernen/assets/js/loadheader.js"></script>
+<script type="module" src="/homepage.js"></script>
+<script src="/assets/js/loadheader.js"></script>
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Bootstrap JS -->
-<script src="/ITLernen/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Markdown-it, Highlight.js und KaTeX -->
 <script src="https://cdn.jsdelivr.net/npm/markdown-it@13.0.1/dist/markdown-it.min.js"></script>
@@ -325,7 +325,7 @@ Inhaltsverzeichnis
     }
 
     async function renderMarkdown() {
-      const markdownContent = await loadMarkdownFile("/ITLernen/mds/MCU/Software/externeInterrupts.md");
+      const markdownContent = await loadMarkdownFile("/mds/MCU/Software/externeInterrupts.md");
       const result = md.render(markdownContent);
       document.getElementById("content").innerHTML = result;
       generateTOC();

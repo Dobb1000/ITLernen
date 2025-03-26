@@ -25,7 +25,7 @@ Die IPv4 Routing-Tabelle sorgt dafür, dass Datenpakete **immer den richtigen We
 
 ## 📄 **Beispiel:**
 
-<img src="/ITLernen/tutorial/Netzwerktechnik/img/beispielnetzwerk.svg" />
+<img src="/tutorial/Netzwerktechnik/img/beispielnetzwerk.svg" />
 
 <br>
 <br>

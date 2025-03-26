@@ -2,7 +2,7 @@
 
 ## **Grundlagen des SPI-Protokolls**
 
-<img style="width: 60%; float: right" src="/ITLernen/tutorial/MCU/Software/img/SPI_general.svg">
+<img style="width: 60%; float: right" src="/tutorial/MCU/Software/img/SPI_general.svg">
 
 
 Das SPI-Protokoll ist ein synchrones, serielles Kommunikationsprotokoll, das eine **Master-Slave-Architektur** verwendet. Es wird häufig zur schnellen Datenübertragung zwischen Mikrocontrollern und Peripheriegeräten genutzt.
@@ -20,7 +20,7 @@ SPI benötigt vier grundlegende Signalleitungen:
 
 SPI kann in vier verschiedenen Modi betrieben werden, die durch die Werte von CPOL (Clock Polarity) und CPHA (Clock Phase) bestimmt werden:
 
-<img style="width: 70%" src="/ITLernen/tutorial/MCU/Software/img/clock_spi.svg">
+<img style="width: 70%" src="/tutorial/MCU/Software/img/clock_spi.svg">
 
 
 ### **Master-Slave-Prinzip**

@@ -1,7 +1,7 @@
 # Externe Interrupts
 
 ## Was ist ein Interrupt?
-<img style="float: right;width: 60%" src="/ITLernen/tutorial/MCU/Software/img/interrupt.png">
+<img style="float: right;width: 60%" src="/tutorial/MCU/Software/img/interrupt.png">
 
 - Ein Interrupt ermöglicht es, während das Hauptprogramm läuft, durch einen Auslöser direkt in eine Funktion zu springen.
 - Das Hauptprogramm wird dabei unterbrochen, und die spezifizierte Funktion wird ausgeführt.
@@ -34,7 +34,7 @@ attachInterrupt(digitalPinToInterrupt(pinA), funktionB, TRIGGER);
 
 ### Mögliche Trigger-Bedingungen:
 
-<img style="float: right;width: 50%" src="/ITLernen/tutorial/MCU/Software/img/falling_rising_change.jpg">
+<img style="float: right;width: 50%" src="/tutorial/MCU/Software/img/falling_rising_change.jpg">
 
 - `FALLING` – fallende Flanke
 - `RISING` – steigende Flanke
@@ -58,12 +58,12 @@ detachInterrupt(digitalPinToInterrupt(pinA));
 - Die Priorität bestimmt, welcher Interrupt zuerst behandelt wird, wenn mehrere gleichzeitig auftreten.
 - Eine niedrigere Zahl bedeutet eine höhere Priorität (z. B. Priorität 0 ist die höchste).
 
-<img style="" src="/ITLernen/tutorial/MCU/Software/img/interrupt_prio.svg">
+<img style="" src="/tutorial/MCU/Software/img/interrupt_prio.svg">
 
 
 ### NVIC (Nested Vectored Interrupt Controller)
 
-<img style="float: right;width: 50%" src="/ITLernen/tutorial/MCU/Software/img/NVIC.png">
+<img style="float: right;width: 50%" src="/tutorial/MCU/Software/img/NVIC.png">
 
 
 - Der NVIC ist eine Hardwarekomponente in ARM-basierten Mikrocontrollern, die Interrupts verwaltet.

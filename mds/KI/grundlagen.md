@@ -16,7 +16,7 @@
 
 ## Künstliche Intelligenz (KI) , Maschine Learning (ML) & Deep Learning (DL)
 
-<img src="/ITLernen/tutorial/KI/img/KI_grundlagen.svg">
+<img src="/tutorial/KI/img/KI_grundlagen.svg">
 
 ### Unterschiede zwischen KI und Algorithmen
 | **Aspekt**        | **Künstliche Intelligenz (KI)**                                      | **Algorithmus**                                     |  

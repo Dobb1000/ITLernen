@@ -1,6 +1,6 @@
 # Grundlagen
 
-<img src="/ITLernen/tutorial/MCU/Software/img/nucleo_darstellung.png">
+<img src="/tutorial/MCU/Software/img/nucleo_darstellung.png">
 
 ## Grundlegende Funktionen
 

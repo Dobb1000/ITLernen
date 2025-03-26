@@ -2,7 +2,7 @@
 
 ## Grundlagen
 
-<img style="width: 60%; float: right" src="/ITLernen/tutorial/MCU/Software/img/uart_simple.png">
+<img style="width: 60%; float: right" src="/tutorial/MCU/Software/img/uart_simple.png">
 
 Das UART-Protokoll ist ein einfaches, asynchrones serielles Kommunikationsprotokoll, das ohne separate Taktleitung arbeitet. Es verwendet lediglich zwei Leitungen:
 
@@ -12,7 +12,7 @@ Das UART-Protokoll ist ein einfaches, asynchrones serielles Kommunikationsprotok
 ## Datenübertragung
 Jede Datenübertragung erfolgt in Form eines Datenrahmens. Dieser besteht typischerweise aus:
 
-<img src="/ITLernen/tutorial/MCU/Software/img/uart_data.png">
+<img src="/tutorial/MCU/Software/img/uart_data.png">
 
 <br>
 <br>

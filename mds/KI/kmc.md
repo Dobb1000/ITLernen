@@ -10,7 +10,7 @@ K-Means ist ein **unüberwachter** Lernalgorithmus zur **Clusterbildung**:
 
 ## 🔢 **Ablauf des Algorithmus:**
 
-<img style="width: 40%; float: right" src="/ITLernen/tutorial/KI/img/kmeans_pap.png">
+<img style="width: 40%; float: right" src="/tutorial/KI/img/kmeans_pap.png">
 
 1. **Anzahl der Cluster K festlegen**.
 2. **Initialisierung**: Zufällige Auswahl von K Start-Zentroiden.
@@ -85,4 +85,4 @@ Immer erwähnen:
 
 # Beipsiel KMC-Visualisierung
 
-<iframe style="height: 150vh" onload="resizeIframe(this)" src="/ITLernen/canvas/KI/KMC/kmcvis.html" id="not"></iframe>
+<iframe style="height: 150vh" onload="resizeIframe(this)" src="/canvas/KI/KMC/kmcvis.html" id="not"></iframe>

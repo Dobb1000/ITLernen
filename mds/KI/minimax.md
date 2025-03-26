@@ -53,5 +53,5 @@
 
 ## 📚 **Beispiel: Tic-Tac-Toe**
 
-<iframe style="height: 150vh" onload="resizeIframe(this)" src="/ITLernen/canvas/KI/TTT/TTT.html" id="not"></iframe>
+<iframe style="height: 150vh" onload="resizeIframe(this)" src="/canvas/KI/TTT/TTT.html" id="not"></iframe>
 

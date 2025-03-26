@@ -4,7 +4,7 @@
 
 Ein Timer ist ein Zähler, der auf Basis eines Taktsignals arbeitet. Mithilfe eines Timers können zeitgesteuerte Aufgaben wie Signalverarbeitung oder periodische Ereignisse realisiert werden. Die Hauptkomponenten eines Timers sind der **Prescaler**, der **Counter** und das **Autoreloadregister (ARR)**.
 
-<img style="" src="/ITLernen/tutorial/MCU/Software/img/Timer.svg">
+<img style="" src="/tutorial/MCU/Software/img/Timer.svg">
 
 
 ## Funktionen der Komponenten
@@ -21,7 +21,7 @@ Der Zähler zählt die Takte, die nach der Prescaler-Division übrig bleiben. So
 
 Das ARR legt den Maximalwert des Zählers fest. Der Timer zählt von 0 bis zum ARR-Wert. Nach einem **Überlauf** wird der Zähler automatisch zurückgesetzt. Damit lässt sich die Dauer eines Timer-Zyklus bestimmen.
 
-<img style="" src="/ITLernen/tutorial/MCU/Software/img/timer_aufbau.png">
+<img style="" src="/tutorial/MCU/Software/img/timer_aufbau.png">
 
 
 ## Wichtige Formeln

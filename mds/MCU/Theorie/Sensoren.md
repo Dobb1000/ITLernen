@@ -23,4 +23,4 @@ Diese Widerstände sorgen für einen definierten Spannungspegel, um Sensoren zuv
 
 ### Beispiel einer Schaltung für einen Pull-up- & Pull-down-Widerstand
 
-<iframe onload="resizeIframe(this)" src="/ITLernen/canvas/logikgatter/pullupdown.html"></iframe>
+<iframe onload="resizeIframe(this)" src="/canvas/logikgatter/pullupdown.html"></iframe>

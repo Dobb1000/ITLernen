@@ -35,7 +35,7 @@
 
 Die Distanz zwischen Punkten ist entscheidend für KNN! Typische Verfahren:
 
-<img src="/ITLernen/tutorial/KI/img/distanzberechnung.svg" style="width: 70%">
+<img src="/tutorial/KI/img/distanzberechnung.svg" style="width: 70%">
 
 Distanzfunktionen für $\mathbf{P} = (p_1 \mid \dots \mid p_n)$ und $\mathbf{Q} = (q_1 \mid \dots \mid q_n)$}
 ### Euklidische Distanz
@@ -116,4 +116,4 @@ $
 
 # Beipsiel KNN-Visualisierung
 
-<iframe style="height: 150vh" onload="resizeIframe(this)" src="/ITLernen/canvas/KI/KNN/knnvis.html" id="not"></iframe>
+<iframe style="height: 150vh" onload="resizeIframe(this)" src="/canvas/KI/KNN/knnvis.html" id="not"></iframe>

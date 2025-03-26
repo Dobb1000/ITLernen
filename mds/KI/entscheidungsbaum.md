@@ -11,8 +11,8 @@ Ein Entscheidungsbaum besteht aus Knoten:
 
 ### **Beispiel:**
 
-<img style="width: 50%; float: left" src="/ITLernen/tutorial/KI/img/affen.svg">
-<img style="width: 45%; float: right" src="/ITLernen/tutorial/KI/img/affen2.svg">
+<img style="width: 50%; float: left" src="/tutorial/KI/img/affen.svg">
+<img style="width: 45%; float: right" src="/tutorial/KI/img/affen2.svg">
 
 <br>
 <br><br><br><br><br><br><br><br>
@@ -23,7 +23,7 @@ Aufgabe: Erstelle ein Baumdiagramm, das zeigt, ob der Affe beißt oder nicht.
 <details>
   <summary>Lösung des Baumdiagramm </summary>
 
-<img style="width: 50%; " src="/ITLernen/tutorial/KI/img/diagram.png">
+<img style="width: 50%; " src="/tutorial/KI/img/diagram.png">
 </details>
 
 
@@ -142,7 +142,7 @@ $$
 \text{Gini}(F) = \sum_{v \in V_F} p_v \times \text{Gini}(F = v)
 $$
 
-<img style="width: 70;" src="/ITLernen/tutorial/KI/img/gini_bed.png">
+<img style="width: 70;" src="/tutorial/KI/img/gini_bed.png">
 
 
 - **F**: Ein Feature  
@@ -214,7 +214,7 @@ $
 \text{Gini}(\text{Parents}) = \frac{5}{10} \times 0 + \frac{5}{10} \times 0{,}72 = 0{,}36
 $
 
-<img src="/ITLernen/tutorial/KI/img/entscheidungsbaum_uebung.png">
+<img src="/tutorial/KI/img/entscheidungsbaum_uebung.png">
 
 </details>
 

@@ -4,11 +4,11 @@
 
 Anders als bei einem DAC (*Digital-Analog Converter*), bei dem ein kontinuierliches Analogsignal erzeugt wird, wird bei der **Pulsweitenmodulation (engl. *****Pulse Width Modulation*****, kurz ******PWM******)** eine Technik verwendet, bei der Leistung, Spannung oder Strom durch schnelles Ein- und Ausschalten eines Signals gesteuert wird. Sie wird häufig in der Elektronik und Steuerungstechnik eingesetzt, um Motoren, LEDs oder andere elektrische Lasten effizient zu regeln.
 
-<img src="/ITLernen/tutorial/MCU/Software/img/PWM_darstellung.png">
+<img src="/tutorial/MCU/Software/img/PWM_darstellung.png">
 
 ## Funktionsweise
 
-<img style="float: right; width: 40%" src="/ITLernen/tutorial/MCU/Software/img/duty_cycle.svg">
+<img style="float: right; width: 40%" src="/tutorial/MCU/Software/img/duty_cycle.svg">
 
 - **Ein PWM-Signal** besteht aus einer periodischen Rechteckwelle mit variabler Ein-Zeit (*duty cycle*).
 - Die Frequenz bleibt konstant, während die Pulsweite (Dauer des „Ein“-Zustands) verändert wird.

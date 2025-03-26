@@ -9,7 +9,7 @@ Logikgatter sind die grundlegenden Bausteine digitaler Schaltungen. Sie führen 
 
 Ein NOT-Gatter kehrt den Eingangswert um.
 
-<iframe onload="resizeIframe(this)" src="/ITLernen/canvas/logikgatter/gatter.html?gate=NOT" id="not"></iframe>
+<iframe onload="resizeIframe(this)" src="/canvas/logikgatter/gatter.html?gate=NOT" id="not"></iframe>
 
 **Boolesche Funktion:**
 $$ Y = \overline{A} $$
@@ -18,7 +18,7 @@ $$ Y = \overline{A} $$
 
 Ein AND-Gatter gibt nur dann eine 1 aus, wenn alle Eingänge 1 sind.
 
-<iframe onload="resizeIframe(this)" src="/ITLernen/canvas/logikgatter/gatter.html?gate=AND" id="and"></iframe>
+<iframe onload="resizeIframe(this)" src="/canvas/logikgatter/gatter.html?gate=AND" id="and"></iframe>
 
 **Boolesche Funktion:**
 $$ Y = A \cdot B $$
@@ -27,7 +27,7 @@ $$ Y = A \cdot B $$
 
 Ein OR-Gatter gibt eine 1 aus, wenn mindestens ein Eingang 1 ist.
 
-<iframe onload="resizeIframe(this)" src="/ITLernen/canvas/logikgatter/gatter.html?gate=OR" id="or"></iframe>
+<iframe onload="resizeIframe(this)" src="/canvas/logikgatter/gatter.html?gate=OR" id="or"></iframe>
 
 **Boolesche Funktion:**
 $$ Y = A + B $$
@@ -36,7 +36,7 @@ $$ Y = A + B $$
 
 Ein NOR-Gatter ist die Negation eines OR-Gatters. Es gibt nur dann eine 1 aus, wenn beide Eingänge 0 sind.
 
-<iframe onload="resizeIframe(this)" src="/ITLernen/canvas/logikgatter/gatter.html?gate=NOR" id="nor"></iframe>
+<iframe onload="resizeIframe(this)" src="/canvas/logikgatter/gatter.html?gate=NOR" id="nor"></iframe>
 
 **Boolesche Funktion:**
 $$ Y = \overline{A + B} $$
@@ -45,7 +45,7 @@ $$ Y = \overline{A + B} $$
 
 Ein NAND-Gatter ist die Negation eines AND-Gatters. Es gibt nur dann eine 0 aus, wenn beide Eingänge 1 sind.
 
-<iframe onload="resizeIframe(this)" src="/ITLernen/canvas/logikgatter/gatter.html?gate=NAND" id="nand"></iframe>
+<iframe onload="resizeIframe(this)" src="/canvas/logikgatter/gatter.html?gate=NAND" id="nand"></iframe>
 
 **Boolesche Funktion:**
 $$ Y = \overline{A \cdot B} $$
@@ -54,7 +54,7 @@ $$ Y = \overline{A \cdot B} $$
 
 Ein XOR-Gatter gibt eine 1 aus, wenn genau einer der beiden Eingänge 1 ist.
 
-<iframe onload="resizeIframe(this)" src="/ITLernen/canvas/logikgatter/gatter.html?gate=XOR" id="xor"></iframe>
+<iframe onload="resizeIframe(this)" src="/canvas/logikgatter/gatter.html?gate=XOR" id="xor"></iframe>
 
 **Boolesche Funktion:**
 $$ Y = A \oplus B $$
@@ -63,7 +63,7 @@ $$ Y = A \oplus B $$
 
 Ein XNOR-Gatter ist die Negation eines XOR-Gatters. Es gibt eine 1 aus, wenn beide Eingänge gleich sind.
 
-<iframe onload="resizeIframe(this)" src="/ITLernen/canvas/logikgatter/gatter.html?gate=XNOR" id="xnor"></iframe>
+<iframe onload="resizeIframe(this)" src="/canvas/logikgatter/gatter.html?gate=XNOR" id="xnor"></iframe>
 
 **Boolesche Funktion:**
 $$ Y = \overline{A \oplus B} $$

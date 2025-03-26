@@ -7,8 +7,8 @@
   <title>ITLernen - PDF Viewer mit Navigation</title>
 
   <!-- Favicons -->
-  <link href="/ITLernen/assets/img/favicon.png" rel="icon">
-  <link href="/ITLernen/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/assets/img/favicon.png" rel="icon">
+  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -16,14 +16,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="/ITLernen/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/ITLernen/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/ITLernen/assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="/ITLernen/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="/ITLernen/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="/ITLernen/assets/css/main.css" rel="stylesheet">
+  <link href="/assets/css/main.css" rel="stylesheet">
 
   <style>
     iframe {
@@ -129,19 +129,19 @@
   </div>
 </footer>
 
-<script src="/ITLernen/homepage.js"></script>
-<script src="/ITLernen/assets/js/loadheader.js"></script>
+<script src="/homepage.js"></script>
+<script src="/assets/js/loadheader.js"></script>
 <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Bootstrap JS -->
-<script src="/ITLernen/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Dynamisch PDF Pfad erstellen basierend auf aktueller URL
     let path = window.location.pathname;
     let filename = path.substring(path.lastIndexOf('/') + 1).replace('.html', '.pdf');
-    let pdfPath = `/ITLernen/tutorial/binaerbaum/binbaum.pdf`;
+    let pdfPath = `/tutorial/binaerbaum/binbaum.pdf`;
 
     document.getElementById("pdf-frame").src = pdfPath;
   });

@@ -16,7 +16,7 @@ SELECT spaltenname1, spaltenname2 FROM tabellenname;
 ```sql
 SELECT name, age FROM users;
 ```
-[Beispielaufgabe](/ITLernen/tutorial/db/SQL/tutorials/SELECT/tutorial.html?solution=./solution.txt)
+[Beispielaufgabe](/tutorial/db/SQL/tutorials/SELECT/tutorial.html?solution=./solution.txt)
 
 
 
@@ -38,7 +38,7 @@ SELECT * FROM tabellenname WHERE bedingung;
 SELECT * FROM users WHERE age > 18;
 ```
 
-[Beispielaufgabe](/ITLernen/tutorial/db/SQL/tutorials/WHERE/tutorial.html?solution=./solution.txt)
+[Beispielaufgabe](/tutorial/db/SQL/tutorials/WHERE/tutorial.html?solution=./solution.txt)
 
 
 
@@ -60,7 +60,7 @@ SELECT * FROM tabellenname ORDER BY spaltenname ASC|DESC;
 SELECT * FROM users ORDER BY age DESC;
 ```
 
-[Beispielaufgabe](/ITLernen/tutorial/db/SQL/tutorials/ORDERBY/tutorial.html?solution=./solution.txt)
+[Beispielaufgabe](/tutorial/db/SQL/tutorials/ORDERBY/tutorial.html?solution=./solution.txt)
 
 
 
@@ -90,7 +90,7 @@ SELECT city, COUNT(*) FROM users GROUP BY city;
 | MAX()   | Höchsten Wert finden              | `SELECT MAX(age) FROM users;`     |
 | MIN()   | Kleinsten Wert finden             | `SELECT MIN(age) FROM users;`     |
 
-[Beispielaufgabe](/ITLernen/tutorial/db/SQL/tutorials/GROUPBY/tutorial.html?solution=./solution.txt)
+[Beispielaufgabe](/tutorial/db/SQL/tutorials/GROUPBY/tutorial.html?solution=./solution.txt)
 
 
 

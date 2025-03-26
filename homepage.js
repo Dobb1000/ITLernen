@@ -30,7 +30,7 @@ onAuthStateChanged(auth, (user)=>{
                     const userData=docSnap.data();
                     document.getElementById('coinsshow-text').innerText=userData.coins + " Chips";
                     coins = userData.coins;
-                    document.getElementById("loginbtn").href = "/ITLernen/tutorial/login/profil.html";
+                    document.getElementById("loginbtn").href = "/tutorial/login/profil.html";
                     document.getElementById("loginbtn").innerText = "Profil";
                 }
                 else{
