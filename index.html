@@ -63,6 +63,27 @@
               <a href="https://www.youtube.com/watch?v=uUiWirX1IEY" class="glightbox btn-watch-video d-flex align-items-center justify-content-center ms-0 ms-md-4 mt-4 mt-md-0">
                 <i class="bi bi-play-circle"></i><span>Kurze Einführung</span>
               </a>
+
+            </div>
+            <div class="countdown-container" data-aos="fade-up" data-aos-delay="100" style="margin-top: 5%">
+              <div class="countdown" id="countdown">
+                <div class="time-box">
+                  <span id="days">00</span>
+                  <div class="label">Tage</div>
+                </div>
+                <div class="time-box">
+                  <span id="hours">00</span>
+                  <div class="label">Stunden</div>
+                </div>
+                <div class="time-box">
+                  <span id="minutes">00</span>
+                  <div class="label">Minuten</div>
+                </div>
+                <div class="time-box">
+                  <span id="seconds">00</span>
+                  <div class="label">Sekunden</div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out">
@@ -75,7 +96,11 @@
 
     </section><!-- /Hero Section -->
 
-</main>    <!-- Stats Section -->
+</main>
+<!-- Stats Section -->
+
+
+<!-- Stats Section -->
   <section id="stats" class="stats section">
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -312,6 +337,36 @@
 
   </script>
 <script src="/assets/js/main.js"></script>
+
+<script>
+  // Ziel-Datum hier einstellen (z. B. 10. Juni 2025 um 09:00 Uhr)
+  const zielDatum = new Date("2025-04-07T09:00:00");
+
+  function updateCountdown() {
+    const jetzt = new Date();
+    const differenz = zielDatum - jetzt;
+
+    if (differenz <= 0) {
+      document.getElementById("countdown").innerHTML = "<h2>🎉 IT-Abi geschafft! 🎉</h2>";
+      return;
+    }
+
+    const tage = Math.floor(differenz / (1000 * 60 * 60 * 24));
+    const stunden = Math.floor((differenz / (1000 * 60 * 60)) % 24);
+    const minuten = Math.floor((differenz / (1000 * 60)) % 60);
+    const sekunden = Math.floor((differenz / 1000) % 60);
+
+    document.getElementById("days").textContent = tage.toString().padStart(2, "0");
+    document.getElementById("hours").textContent = stunden.toString().padStart(2, "0");
+    document.getElementById("minutes").textContent = minuten.toString().padStart(2, "0");
+    document.getElementById("seconds").textContent = sekunden.toString().padStart(2, "0");
+  }
+
+  // Alle 1 Sekunde aktualisieren
+  setInterval(updateCountdown, 1000);
+  updateCountdown(); // direkt initial aufrufen
+</script>
+
 </body>
 
 </html>
