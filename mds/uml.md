@@ -157,8 +157,53 @@ Eine abstrakte Methode hat nur eine Definition, aber keine Umsetzung. Unterklass
 - Die Methode der Oberklasse kann weiterhin mit `super.methode()` aufgerufen werden.
 
 
+<br><br>
+<br>
+<br>
+<br>
+<br>
 
 
+## **Interfaces**
+
+### **Was ist ein Interface?**
+
+Ein **Interface** ist **ähnlich wie eine abstrakte Klasse** – aber **noch strenger**:
+
+> 🔹 **Es ist wie eine abstrakte Klasse**, die **nur abstrakte Methoden** enthalten darf (also Methoden ohne Inhalt).  
+> 🔹 Klassen, die ein Interface **implementieren**, müssen **alle Methoden** daraus umsetzen.
+
+Man nutzt Interfaces, um Klassen ein gemeinsames Verhalten zu geben – auch wenn sie sonst nichts gemeinsam haben.
+
+---
+
+### **Was macht ein Interface?**
+
+- Gibt nur **Methodennamen vor**, aber keinen Code.
+- **Verpflichtet** die Klasse, diese Methoden zu definieren.
+- Klassen können **mehrere Interfaces gleichzeitig** implementieren.
+
+---
+
+### **Beispiel im Code:**
+
+```java
+public interface Beweglich {
+    void bewegen();
+}
+
+public class Hund implements Beweglich {
+    public void bewegen() {
+        System.out.println("Der Hund läuft.");
+    }
+}
+```
+
+---
+
+### **UML-Diagramm:**
+
+<img style="width: 40%;" src="./imgs/interface.png">
 
 
-
+> Der Hund **implementiert** das Interface `Beweglich` und muss die Methode `bewegen()` definieren.
