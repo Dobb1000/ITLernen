@@ -171,7 +171,7 @@ Eine abstrakte Methode hat nur eine Definition, aber keine Umsetzung. Unterklass
 Ein **Interface** ist **ähnlich wie eine abstrakte Klasse** – aber **noch strenger**:
 
 > 🔹 **Es ist wie eine abstrakte Klasse**, die **nur abstrakte Methoden** enthalten darf (also Methoden ohne Inhalt).  
-> 🔹 Klassen, die ein Interface **implementieren**, müssen **alle Methoden** daraus umsetzen.
+> 🔹 Klassen, die ein Interface **implementieren**, müssen **alle Methoden** daraus überschreiben.
 
 Man nutzt Interfaces, um Klassen ein gemeinsames Verhalten zu geben – auch wenn sie sonst nichts gemeinsam haben.
 
@@ -206,4 +206,4 @@ public class Hund implements Beweglich {
 <img style="width: 40%;" src="./imgs/interface.png">
 
 
-> Der Hund **implementiert** das Interface `Beweglich` und muss die Methode `bewegen()` definieren.
+> Der Hund **implementiert** das Interface `Beweglich` und muss die Methode `bewegen()` überschreiben.
