@@ -21,7 +21,7 @@
 
 **Tabellen:**
 
-<img src="/tutorial/DB/Grundlagen/img/kundentabelle!.svg" style="width: 50%">
+<img src="/tutorial/db/Grundlagen/img/kundentabelle!.svg" style="width: 50%">
 
 ➡️ **Referentielle Integrität verletzt:** KundenID 3 existiert nicht in der Kundentabelle!
 

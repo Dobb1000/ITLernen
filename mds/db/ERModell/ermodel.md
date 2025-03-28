@@ -30,7 +30,7 @@ Das **ER-Modell** dient zur **grafischen Darstellung der Datenstruktur** eines I
 
 ## **Beispiel: Mini-ER-Modell**
 
-<img src="/tutorial/DB/ERModell/img/ERModellBuecherrei.png" style="width: 100%">
+<img src="/tutorial/db/ERModell/img/ERModellBuecherrei.png" style="width: 100%">
 
 ---
 
@@ -41,7 +41,7 @@ Das **ER-Modell** dient zur **grafischen Darstellung der Datenstruktur** eines I
 - Die Tabelle enthält **ggf. weitere Attribute**.
 - Die Primärschlüssel der beteiligten Entitäten werden zu **Fremdschlüsseln**.
 
-<img src="/tutorial/DB/ERModell/img/ermodellsplit.png" style="width: 100%">
+<img src="/tutorial/db/ERModell/img/ermodellsplit.png" style="width: 100%">
 
 
 ## 💡 **Merksätze:**
