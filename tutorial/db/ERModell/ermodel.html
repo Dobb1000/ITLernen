@@ -284,7 +284,7 @@
 
 // Extract just the filename
             let filename = path.substring(path.lastIndexOf('/') + 1).replace('.html', '.md');
-            const markdownContent = await loadMarkdownFile(`/mds/DB/ERModell/${filename}`);
+            const markdownContent = await loadMarkdownFile(`/mds/db/ERModell/${filename}`);
             const result = md.render(markdownContent);
             document.getElementById("content").innerHTML = result;
             generateTOC();
