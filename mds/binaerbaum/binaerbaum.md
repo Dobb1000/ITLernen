@@ -66,7 +66,7 @@
 
 ## 2. Fall: Knoten hat 1 Kind
 
-<img src="/tutorial/binaerbaum/img/lvk-km1b.png" style="width: 30%">
+<img src="/tutorial/binaerbaum/img/lvk-km1b.png" style="width: 50%">
 
 
 - Knoten durch das Kind ersetzen
