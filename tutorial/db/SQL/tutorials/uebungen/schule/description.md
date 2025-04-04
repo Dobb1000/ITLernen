@@ -1,5 +1,8 @@
 # Schul-Datenbank: SQL-Übungen
 
+**!! BEI Fehlern mit der Lösung einfach seite so oft neu laden bis es angezeigt wird !!**
+
+
 Diese Übungsdatenbank simuliert eine einfache Schulverwaltung. Ziel ist es, mit klassischen SQL-Abfragen (über WHERE statt INNER JOIN) wichtige Informationen zu extrahieren. Die Komplexität der Aufgaben steigt mit jeder weiteren Frage.
 
 ## Struktur

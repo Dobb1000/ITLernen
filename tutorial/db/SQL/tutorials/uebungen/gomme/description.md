@@ -1,5 +1,8 @@
 # Minecraft Server „GommeHD.net“ – SQL Übungen
 
+**!! BEI Fehlern mit der Lösung einfach seite so oft neu laden bis es angezeigt wird !!**
+
+
 <img src="./tenor.gif" style="width: 20%">
 
 Diese Übungsdatenbank basiert auf dem Aufbau eines Minecraft-Servers. Spieler nehmen an verschiedenen Spielmodi teil, bestreiten Matches und sammeln Statistiken. Ziel ist es, mittels klassischer SQL-Abfragen (Joins über WHERE) Daten auszuwerten.
