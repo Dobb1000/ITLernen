@@ -1,0 +1,174 @@
+[
+  {
+    "query": "SELECT name, email FROM Users;",
+    "columns": [
+      "name",
+      "email"
+    ],
+    "values": [
+      [
+        "Max Mustermann",
+        "max@example.com"
+      ],
+      [
+        "Erika Musterfrau",
+        "erika@example.com"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Rooms.room_name, COUNT(Devices.device_id) AS device_count\n    FROM Rooms\n    LEFT JOIN Devices ON Rooms.room_id = Devices.room_id\n    GROUP BY Rooms.room_name;",
+    "columns": [
+      "room_name",
+      "device_count"
+    ],
+    "values": [
+      [
+        "B\u00fcro",
+        "3"
+      ],
+      [
+        "K\u00fcche",
+        "2"
+      ],
+      [
+        "Wohnzimmer",
+        "2"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT device_name\n    FROM Devices\n    WHERE room_id = (SELECT room_id FROM Rooms WHERE room_name = 'Wohnzimmer');",
+    "columns": [
+      "device_name"
+    ],
+    "values": [
+      [
+        "Licht"
+      ],
+      [
+        "Heizung"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Devices.device_name, SUM(EnergyUsage.kwh) AS total_usage\n    FROM Devices\n    LEFT JOIN EnergyUsage ON Devices.device_id = EnergyUsage.device_id\n    GROUP BY Devices.device_name;",
+    "columns": [
+      "device_name",
+      "total_usage"
+    ],
+    "values": [
+      [
+        "Backofen",
+        "7.0"
+      ],
+      [
+        "Heizung",
+        "50.2"
+      ],
+      [
+        "Klimaanlage",
+        "19.3"
+      ],
+      [
+        "K\u00fchlschrank",
+        "5.5"
+      ],
+      [
+        "Licht",
+        "30.5"
+      ],
+      [
+        "PC",
+        "8.0"
+      ],
+      [
+        "Schreibtischlampe",
+        "3.3"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Users.name, COUNT(Activities.activity_id) AS activity_count\n    FROM Users\n    LEFT JOIN Activities ON Users.user_id = Activities.user_id\n    GROUP BY Users.name\n    ORDER BY activity_count DESC\n    LIMIT 1;",
+    "columns": [
+      "name",
+      "activity_count"
+    ],
+    "values": [
+      [
+        "Max Mustermann",
+        "9"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT device_name, SUM(kwh) AS total_usage\n    FROM Devices\n    JOIN EnergyUsage ON Devices.device_id = EnergyUsage.device_id\n    GROUP BY device_name\n    HAVING total_usage > 10\n    ORDER BY total_usage DESC;",
+    "columns": [
+      "device_name",
+      "total_usage"
+    ],
+    "values": [
+      [
+        "Heizung",
+        "50.2"
+      ],
+      [
+        "Licht",
+        "30.5"
+      ],
+      [
+        "Klimaanlage",
+        "19.3"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Devices.device_name, Rooms.room_name\n    FROM Devices\n    JOIN Rooms ON Devices.room_id = Rooms.room_id\n    WHERE Devices.status = 'aus'\n    ORDER BY Rooms.room_name;",
+    "columns": [
+      "device_name",
+      "room_name"
+    ],
+    "values": [
+      [
+        "Klimaanlage",
+        "B\u00fcro"
+      ],
+      [
+        "Heizung",
+        "Wohnzimmer"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT AVG(EnergyUsage.kwh) AS average_usage\n    FROM EnergyUsage\n    JOIN Devices ON EnergyUsage.device_id = Devices.device_id\n    JOIN Rooms ON Devices.room_id = Rooms.room_id\n    WHERE Rooms.room_name = 'Wohnzimmer';",
+    "columns": [
+      "average_usage"
+    ],
+    "values": [
+      [
+        "20.175"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Devices.device_name, SUM(EnergyUsage.kwh) AS total_usage\n    FROM Devices\n    JOIN EnergyUsage ON Devices.device_id = EnergyUsage.device_id\n    WHERE strftime('%Y', EnergyUsage.usage_date) = '2025'\n    GROUP BY Devices.device_name\n    HAVING total_usage > 50 AND Devices.status = 'ein';",
+    "columns": [
+      "device_name",
+      "total_usage"
+    ],
+    "values": []
+  },
+  {
+    "query": "SELECT Users.name, COUNT(Activities.activity_id) AS activity_count\n    FROM Users\n    JOIN Activities ON Users.user_id = Activities.user_id\n    GROUP BY Users.name\n    HAVING activity_count > 5\n    ORDER BY activity_count DESC;",
+    "columns": [
+      "name",
+      "activity_count"
+    ],
+    "values": [
+      [
+        "Max Mustermann",
+        "9"
+      ]
+    ]
+  }
+]

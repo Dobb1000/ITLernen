@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ER-Modell aus SQLite-Datenbank</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.3/dist/mermaid.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.1.0/github-markdown-light.min.css">
+    <style>
+        #erModelContainer {
+            height: 600px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body class="container py-5">
+<h2>ER-Modell aus SQLite-Datenbank</h2>
+
+<div id="erModelContainer">
+    <!-- ER-Modell wird hier angezeigt -->
+</div>
+
+<script>
+    // Funktion, um die Datenbank zu laden
+    async function loadDatabase(filePath) {
+        try {
+            const response = await fetch(filePath);
+            const buffer = await response.arrayBuffer();
+            const SQL = await initSqlJs({ locateFile: filename => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${filename}` });
+            const db = new SQL.Database(new Uint8Array(buffer));
+
+            // Tabellenstruktur abrufen
+            const tables = getTables(db);
+            const relationships = getRelationships(db);
+
+            // ER-Modell generieren
+            const erModel = generateERModel(tables, relationships);
+
+            // ER-Modell anzeigen
+            displayERModel(erModel);
+        } catch (error) {
+            console.error('Fehler beim Laden der Datenbank:', error);
+        }
+    }
+
+    // Funktion, um Tabellen in der Datenbank zu extrahieren
+    function getTables(db) {
+        const result = db.exec("SELECT name FROM sqlite_master WHERE type='table';");
+        return result[0].values.map(row => row[0]);
+    }
+
+    // Funktion, um Beziehungen zwischen Tabellen zu finden (dies ist sehr einfach gehalten)
+    function getRelationships(db) {
+        const relationships = [];
+        const tables = getTables(db);
+
+        tables.forEach(table => {
+            // Wir holen uns alle Spalten einer Tabelle
+            const result = db.exec(`PRAGMA table_info(${table});`);
+            result[0].values.forEach(row => {
+                const column = row[1];
+                if (column.toLowerCase().includes('id') && column.toLowerCase() !== 'id') {
+                    relationships.push({ from: table, to: column });
+                }
+            });
+        });
+
+        return relationships;
+    }
+
+    // Funktion, um das ER-Modell als Mermaid-Diagramm zu generieren
+    function generateERModel(tables, relationships) {
+        let erModel = 'erDiagram\n';
+
+        // Tabellen als Entitäten hinzufügen
+        tables.forEach(table => {
+            erModel += `  ${table} {\n    ${table}_id INT\n  }\n`;
+        });
+
+        // Beziehungen als Linien hinzufügen
+        relationships.forEach(rel => {
+            erModel += `  ${rel.from} ||--o| ${rel.to} : "has"\n`;
+        });
+
+        return erModel;
+    }
+
+    // Funktion, um das ER-Modell anzuzeigen
+    function displayERModel(erModel) {
+        const container = document.getElementById("erModelContainer");
+        container.innerHTML = '<div class="mermaid">' + erModel + '</div>';
+        mermaid.init(undefined, container);  // Mermaid initialisieren, um das Diagramm zu rendern
+    }
+
+    // Die Datenbank laden und das ER-Modell generieren
+    loadDatabase("./Car_Database.db");  // Pfad zur DB anpassen, wenn nötig
+</script>
+</body>
+</html>

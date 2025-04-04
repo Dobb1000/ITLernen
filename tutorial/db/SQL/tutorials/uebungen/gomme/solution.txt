@@ -1,0 +1,224 @@
+[
+  {
+    "query": "SELECT username, join_date FROM Players;",
+    "columns": [
+      "username",
+      "join_date"
+    ],
+    "values": [
+      [
+        "Paluten",
+        "2022-03-01"
+      ],
+      [
+        "Ungespielt",
+        "2023-01-15"
+      ],
+      [
+        "BastiGHG",
+        "2021-07-20"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT game_name, max_players FROM Games;",
+    "columns": [
+      "game_name",
+      "max_players"
+    ],
+    "values": [
+      [
+        "BedWars",
+        "8"
+      ],
+      [
+        "SkyWars",
+        "12"
+      ],
+      [
+        "QuickSG",
+        "24"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Players.username, Games.game_name \n       FROM Players, Stats, Matches, Games \n       WHERE Players.player_id = Stats.player_id \n       AND Stats.match_id = Matches.match_id \n       AND Matches.game_id = Games.game_id;",
+    "columns": [
+      "username",
+      "game_name"
+    ],
+    "values": [
+      [
+        "Paluten",
+        "BedWars"
+      ],
+      [
+        "Ungespielt",
+        "BedWars"
+      ],
+      [
+        "BastiGHG",
+        "BedWars"
+      ],
+      [
+        "Paluten",
+        "BedWars"
+      ],
+      [
+        "Ungespielt",
+        "SkyWars"
+      ],
+      [
+        "BastiGHG",
+        "QuickSG"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Players.username, COUNT(Stats.stat_id) AS matches_played \n       FROM Players, Stats \n       WHERE Players.player_id = Stats.player_id \n       GROUP BY Players.username;",
+    "columns": [
+      "username",
+      "matches_played"
+    ],
+    "values": [
+      [
+        "Ungespielt",
+        "2"
+      ],
+      [
+        "BastiGHG",
+        "2"
+      ],
+      [
+        "Paluten",
+        "2"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Players.username, AVG(Stats.kills) AS avg_kills \n       FROM Players, Stats \n       WHERE Players.player_id = Stats.player_id \n       GROUP BY Players.username;",
+    "columns": [
+      "username",
+      "avg_kills"
+    ],
+    "values": [
+      [
+        "Ungespielt",
+        "1.0"
+      ],
+      [
+        "BastiGHG",
+        "2.5"
+      ],
+      [
+        "Paluten",
+        "5.5"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Players.username, Games.game_name \n       FROM Players, Stats, Matches, Games \n       WHERE Players.player_id = Stats.player_id \n       AND Stats.match_id = Matches.match_id \n       AND Matches.game_id = Games.game_id \n       AND Stats.won = 1;",
+    "columns": [
+      "username",
+      "game_name"
+    ],
+    "values": [
+      [
+        "Paluten",
+        "BedWars"
+      ],
+      [
+        "BastiGHG",
+        "BedWars"
+      ],
+      [
+        "Paluten",
+        "BedWars"
+      ],
+      [
+        "BastiGHG",
+        "QuickSG"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Players.username, Stats.kills, Stats.deaths \n       FROM Players, Stats \n       WHERE Players.player_id = Stats.player_id \n       AND Stats.kills > Stats.deaths;",
+    "columns": [
+      "username",
+      "kills",
+      "deaths"
+    ],
+    "values": [
+      [
+        "Paluten",
+        "5",
+        "2"
+      ],
+      [
+        "BastiGHG",
+        "3",
+        "1"
+      ],
+      [
+        "Paluten",
+        "6",
+        "3"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Games.game_name, AVG(Matches.duration_minutes) AS avg_duration \n       FROM Games, Matches \n       WHERE Games.game_id = Matches.game_id \n       GROUP BY Games.game_name;",
+    "columns": [
+      "game_name",
+      "avg_duration"
+    ],
+    "values": [
+      [
+        "BedWars",
+        "13.5"
+      ],
+      [
+        "QuickSG",
+        "5.0"
+      ],
+      [
+        "SkyWars",
+        "10.0"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Players.username, Stats.kills \n       FROM Players, Stats \n       WHERE Players.player_id = Stats.player_id \n       AND Stats.kills >= 5;",
+    "columns": [
+      "username",
+      "kills"
+    ],
+    "values": [
+      [
+        "Paluten",
+        "5"
+      ],
+      [
+        "Paluten",
+        "6"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Players.username, COUNT(Stats.stat_id) AS wins \n       FROM Players, Stats \n       WHERE Players.player_id = Stats.player_id \n       AND Stats.won = 1 \n       GROUP BY Players.username;",
+    "columns": [
+      "username",
+      "wins"
+    ],
+    "values": [
+      [
+        "BastiGHG",
+        "2"
+      ],
+      [
+        "Paluten",
+        "2"
+      ]
+    ]
+  }
+]

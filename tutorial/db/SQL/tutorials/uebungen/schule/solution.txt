@@ -1,0 +1,237 @@
+[
+  {
+    "query": "SELECT name, birthdate FROM Students;",
+    "columns": [
+      "name",
+      "birthdate"
+    ],
+    "values": [
+      [
+        "Anna Schmidt",
+        "2007-05-12"
+      ],
+      [
+        "Ben M\u00fcller",
+        "2006-11-23"
+      ],
+      [
+        "Clara Schulz",
+        "2007-02-18"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT class_name, subject FROM Classes, Teachers WHERE Classes.teacher_id = Teachers.teacher_id;",
+    "columns": [
+      "class_name",
+      "subject"
+    ],
+    "values": [
+      [
+        "Mathe 1",
+        "Mathematik"
+      ],
+      [
+        "Bio 1",
+        "Biologie"
+      ],
+      [
+        "Deutsch 1",
+        "Deutsch"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Students.name, Classes.class_name FROM Students, Enrollments, Classes WHERE Students.student_id = Enrollments.student_id AND Enrollments.class_id = Classes.class_id;",
+    "columns": [
+      "name",
+      "class_name"
+    ],
+    "values": [
+      [
+        "Anna Schmidt",
+        "Mathe 1"
+      ],
+      [
+        "Ben M\u00fcller",
+        "Mathe 1"
+      ],
+      [
+        "Clara Schulz",
+        "Mathe 1"
+      ],
+      [
+        "Anna Schmidt",
+        "Bio 1"
+      ],
+      [
+        "Ben M\u00fcller",
+        "Bio 1"
+      ],
+      [
+        "Ben M\u00fcller",
+        "Deutsch 1"
+      ],
+      [
+        "Clara Schulz",
+        "Deutsch 1"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT class_name, COUNT(Enrollments.enrollment_id) AS student_count FROM Classes, Enrollments WHERE Classes.class_id = Enrollments.class_id GROUP BY class_name;",
+    "columns": [
+      "class_name",
+      "student_count"
+    ],
+    "values": [
+      [
+        "Bio 1",
+        "2"
+      ],
+      [
+        "Deutsch 1",
+        "2"
+      ],
+      [
+        "Mathe 1",
+        "3"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT name, AVG(Grades.grade) AS avg_grade FROM Students, Enrollments, Grades WHERE Students.student_id = Enrollments.student_id AND Enrollments.enrollment_id = Grades.enrollment_id GROUP BY Students.name;",
+    "columns": [
+      "name",
+      "avg_grade"
+    ],
+    "values": [
+      [
+        "Anna Schmidt",
+        "1.5"
+      ],
+      [
+        "Ben M\u00fcller",
+        "2.3333333333333335"
+      ],
+      [
+        "Clara Schulz",
+        "1.0"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT class_name, AVG(Grades.grade) AS avg_grade FROM Classes, Enrollments, Grades WHERE Classes.class_id = Enrollments.class_id AND Enrollments.enrollment_id = Grades.enrollment_id GROUP BY class_name;",
+    "columns": [
+      "class_name",
+      "avg_grade"
+    ],
+    "values": [
+      [
+        "Bio 1",
+        "1.5"
+      ],
+      [
+        "Deutsch 1",
+        "1.5"
+      ],
+      [
+        "Mathe 1",
+        "2.0"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Students.name, Grades.grade FROM Students, Enrollments, Grades WHERE Students.student_id = Enrollments.student_id AND Enrollments.enrollment_id = Grades.enrollment_id AND Grades.grade = 1;",
+    "columns": [
+      "name",
+      "grade"
+    ],
+    "values": [
+      [
+        "Clara Schulz",
+        "1"
+      ],
+      [
+        "Anna Schmidt",
+        "1"
+      ],
+      [
+        "Clara Schulz",
+        "1"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Teachers.name, COUNT(Classes.class_id) AS class_count FROM Teachers, Classes WHERE Teachers.teacher_id = Classes.teacher_id GROUP BY Teachers.name;",
+    "columns": [
+      "name",
+      "class_count"
+    ],
+    "values": [
+      [
+        "Frau Klein",
+        "1"
+      ],
+      [
+        "Herr Meier",
+        "1"
+      ],
+      [
+        "Herr Schwarz",
+        "1"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT Students.name, Classes.class_name, Grades.grade FROM Students, Enrollments, Grades, Classes WHERE Students.student_id = Enrollments.student_id AND Enrollments.enrollment_id = Grades.enrollment_id AND Enrollments.class_id = Classes.class_id AND Grades.grade < 3;",
+    "columns": [
+      "name",
+      "class_name",
+      "grade"
+    ],
+    "values": [
+      [
+        "Anna Schmidt",
+        "Mathe 1",
+        "2"
+      ],
+      [
+        "Clara Schulz",
+        "Mathe 1",
+        "1"
+      ],
+      [
+        "Anna Schmidt",
+        "Bio 1",
+        "1"
+      ],
+      [
+        "Ben M\u00fcller",
+        "Bio 1",
+        "2"
+      ],
+      [
+        "Ben M\u00fcller",
+        "Deutsch 1",
+        "2"
+      ],
+      [
+        "Clara Schulz",
+        "Deutsch 1",
+        "1"
+      ]
+    ]
+  },
+  {
+    "query": "SELECT class_name FROM Classes, Teachers WHERE Classes.teacher_id = Teachers.teacher_id AND Teachers.name = 'Herr Meier';",
+    "columns": [
+      "class_name"
+    ],
+    "values": [
+      [
+        "Mathe 1"
+      ]
+    ]
+  }
+]
