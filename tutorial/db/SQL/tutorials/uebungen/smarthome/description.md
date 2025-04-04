@@ -1,4 +1,5 @@
 # Smart Home SQL Aufgaben
+**!! BEI Fehlern mit der Lösung einfach seite so oft neu laden bis es angezeigt wird !!**
 
 Die folgende Übungsdatenbank bildet ein fiktives **Smart Home System** ab. Sie umfasst mehrere miteinander verknüpfte Tabellen, die verschiedene Aspekte eines intelligent vernetzten Haushalts modellieren. Ziel ist es, durch gezielte SQL-Abfragen ein besseres Verständnis für Datenbankstrukturen, Abfragen und Verknüpfungen zu entwickeln.
 
