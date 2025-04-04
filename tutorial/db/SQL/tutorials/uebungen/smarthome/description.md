@@ -65,7 +65,7 @@ Berechnen Sie den durchschnittlichen Energieverbrauch für alle Geräte im Raum 
 
 --aufgabe--
 
-Ermitteln Sie die Geräte, die im Jahr 2025 mehr als 50 kWh verbraucht haben und deren Status „ein“ ist.
+Ermitteln Sie die Geräte, die im Jahr 2025 mehr als 50 kWh verbraucht haben und deren Status „ein“ ist. mit `WHERE strftime('%Y', EnergyUsage.usage_date) = '2025'` kann man für 2025 abfragen machen...
 
 --aufgabe--
 
